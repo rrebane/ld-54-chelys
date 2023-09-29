@@ -5,5 +5,3 @@
 [node name="Button" type="Button"]
 theme = ExtResource("1_2jkwp")
 text = "Play"
-
-[connection signal="pressed" from="." to="." method="_on_pressed"]

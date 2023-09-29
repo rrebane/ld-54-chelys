@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://bea6f28bikuo2"]
+
+[ext_resource type="Theme" uid="uid://b1rse5hojok5d" path="res://assets/ui_themes/Default.tres" id="1_1klb1"]
+[ext_resource type="PackedScene" uid="uid://5vq4e3n08734" path="res://ui/button.tscn" id="2_2vffd"]
+[ext_resource type="AudioStream" uid="uid://trs7p5574fea" path="res://assets/sfx/confirm_1.wav" id="3_uassw"]
+
+[sub_resource type="Gradient" id="Gradient_1soc4"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_voxyn"]
+gradient = SubResource("Gradient_1soc4")
+
+[sub_resource type="GDScript" id="GDScript_23l0f"]
+resource_name = "OptionsBackButton"
+script/source = "extends MainMenuButton
+
+func on_pressed():
+	EventsBus.play_sfx.emit(pressed_sound)
+	SceneSwitcher.goto_scene(\"res://ui/main_menu.tscn\")
+	pass # Replace with function body.
+"
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_voxyn")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("1_1klb1")
+theme_override_font_sizes/font_size = 72
+text = "Options"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_1klb1")
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="HSlider" type="HSlider" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+value = 100.0
+tick_count = 10
+
+[node name="Button2" parent="TextureRect/MarginContainer/VBoxContainer" instance=ExtResource("2_2vffd")]
+layout_mode = 2
+text = "Back"
+script = SubResource("GDScript_23l0f")
+pressed_sound = ExtResource("3_uassw")

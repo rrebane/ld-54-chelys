@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://lp34cu5pjyah"]
+[gd_scene load_steps=8 format=3 uid="uid://lp34cu5pjyah"]
 
 [ext_resource type="Theme" uid="uid://b1rse5hojok5d" path="res://assets/ui_themes/Default.tres" id="1_u4u3q"]
 [ext_resource type="Script" path="res://ui/StartButton.gd" id="2_cgyle"]
@@ -11,6 +11,16 @@ colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_24ywf"]
 gradient = SubResource("Gradient_8jedg")
+
+[sub_resource type="GDScript" id="GDScript_m4oab"]
+resource_name = "MainMenuOptions"
+script/source = "extends MainMenuButton
+
+func on_pressed():
+	EventsBus.play_sfx.emit(pressed_sound)
+	SceneSwitcher.goto_scene(\"res://ui/options.tscn\")
+	pass # Replace with function body.
+"
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -73,5 +83,5 @@ pressed_sound = ExtResource("3_w2mim")
 layout_mode = 2
 theme = ExtResource("1_u4u3q")
 text = "Credits"
-script = ExtResource("2_cgyle")
+script = SubResource("GDScript_m4oab")
 pressed_sound = ExtResource("4_hc7hk")
