@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Ld-54-chelys"
+run/main_scene="res://ui/main_menu.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneSwitcher="*res://singletons/SceneSwitcher.gd"
 
 [display]
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://lp34cu5pjyah"]
+[gd_scene load_steps=5 format=3 uid="uid://lp34cu5pjyah"]
 
 [ext_resource type="Theme" uid="uid://b1rse5hojok5d" path="res://assets/ui_themes/Default.tres" id="1_u4u3q"]
+[ext_resource type="Script" path="res://ui/Button.gd" id="2_qw1gj"]
 
 [sub_resource type="Gradient" id="Gradient_8jedg"]
 offsets = PackedFloat32Array(1)
@@ -62,6 +63,7 @@ size_flags_vertical = 4
 layout_mode = 2
 theme = ExtResource("1_u4u3q")
 text = "Play"
+script = ExtResource("2_qw1gj")
 
 [node name="Button2" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
@@ -77,3 +79,5 @@ text = "Credits"
 layout_mode = 2
 theme = ExtResource("1_u4u3q")
 text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/VBoxContainer/Button" to="MarginContainer/VBoxContainer2/VBoxContainer/Button" method="_on_pressed"]
