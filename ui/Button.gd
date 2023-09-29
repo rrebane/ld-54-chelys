@@ -1,9 +1,11 @@
 extends Button
+class_name  MainMenuButton
 
 @export var pressed_sound : AudioStream
 
+func _ready():
+	pressed.connect(on_pressed)
 
-func _on_pressed():
-	EventsBus.play_sfx.emit(pressed_sound)
-	SceneSwitcher.goto_scene("res://scenes/game.tscn")
-	pass # Replace with function body.
+func on_pressed():
+	# Overwrite in inherited class
+	pass

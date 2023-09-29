@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://lp34cu5pjyah"]
+[gd_scene load_steps=7 format=3 uid="uid://lp34cu5pjyah"]
 
 [ext_resource type="Theme" uid="uid://b1rse5hojok5d" path="res://assets/ui_themes/Default.tres" id="1_u4u3q"]
-[ext_resource type="Script" path="res://ui/Button.gd" id="2_qw1gj"]
-[ext_resource type="AudioStream" uid="uid://dd7kmgwlqs6vf" path="res://assets/sfx/blip.wav" id="3_q68xj"]
+[ext_resource type="Script" path="res://ui/StartButton.gd" id="2_cgyle"]
+[ext_resource type="AudioStream" uid="uid://dd7kmgwlqs6vf" path="res://assets/sfx/blip.wav" id="3_w2mim"]
+[ext_resource type="AudioStream" uid="uid://trs7p5574fea" path="res://assets/sfx/confirm_1.wav" id="4_hc7hk"]
 
 [sub_resource type="Gradient" id="Gradient_8jedg"]
 offsets = PackedFloat32Array(1)
@@ -59,27 +60,18 @@ text = "The Game"
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_constants/separation = 20
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_u4u3q")
-text = "Play"
-script = ExtResource("2_qw1gj")
-pressed_sound = ExtResource("3_q68xj")
+text = "Play!"
+script = ExtResource("2_cgyle")
+pressed_sound = ExtResource("3_w2mim")
 
 [node name="Button2" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_u4u3q")
-text = "Options"
-
-[node name="Button4" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_u4u3q")
 text = "Credits"
-
-[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_u4u3q")
-text = "Quit"
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer2/VBoxContainer/Button" to="MarginContainer/VBoxContainer2/VBoxContainer/Button" method="_on_pressed"]
+script = ExtResource("2_cgyle")
+pressed_sound = ExtResource("4_hc7hk")
