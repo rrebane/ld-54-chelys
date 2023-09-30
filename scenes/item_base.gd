@@ -11,6 +11,8 @@ var is_over_inventory = false
 
 var original_position = null
 
+var can_drop = false
+
 func _ready():
 	modulate = Color(1, 1, 1, 0.5)
 	add_to_group('item')
@@ -19,10 +21,16 @@ func _ready():
 	input_event.connect(_on_input_event)
 
 func _physics_process(delta):
-	if in_place:
-		return
-	elif is_selected:
+	
+	if is_selected:
 		followMouse()
+		
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and can_drop:
+			print("called me")
+			var did_set = try_set()
+			print(did_set)
+			if did_set:
+				is_selected = false
 		
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 			is_selected = false
@@ -43,17 +51,21 @@ func followMouse():
 
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		print("Here")
 		if event.pressed and not is_selected:
-			print("Here I am")
+			var timer = Timer.new()
+			timer.set_wait_time(0.1)
+			timer.one_shot = true
+			add_child(timer)
+			timer.timeout.connect(func():
+				print("hihi")
+				can_drop = true)
+			timer.start()
+		
 			original_position = global_position
 			is_selected = true
+			in_place = false
 			return
-		if event.pressed and is_selected:
-			print("Here again")
-			if try_set():
-				is_selected = false
-
+	
 
 func _on_area_entered(area):
 	if area.is_in_group("inventory"):
@@ -81,7 +93,8 @@ func try_set():
 	if not is_blocked:
 		in_place = true
 		modulate = Color(1, 1, 1, 1)
-		return true
 		input_event.disconnect(_on_input_event)
+		return true
+		
 	else:
 		return false
