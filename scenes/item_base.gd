@@ -24,8 +24,12 @@ func _physics_process(delta):
 	elif is_selected:
 		followMouse()
 		
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			is_selected = false
+			global_position = original_position
+		# TODO Tween this!
+
 	if is_over_inventory:
-		
 		var x_mod = int(global_position.x) % 32
 		var y_mod = int(global_position.y) % 32
 		
@@ -49,12 +53,6 @@ func _on_input_event(viewport, event, shape_idx):
 			print("Here again")
 			if try_set():
 				is_selected = false
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
-		is_selected = false
-		global_position = original_position
-		# TODO Tween this!
-
-
 
 
 func _on_area_entered(area):
