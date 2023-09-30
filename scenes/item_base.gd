@@ -4,14 +4,11 @@ extends Area2D
 @export var defence = 1
 
 var in_place = false
-
 var is_selected = false
-
 var is_over_inventory = false
-
 var original_position = null
-
 var can_drop = false
+var is_first_drop = true
 
 func _ready():
 	modulate = Color(1, 1, 1, 0.5)
@@ -32,8 +29,8 @@ func _physics_process(delta):
 		
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 			is_selected = false
+			can_drop = false
 			global_position = original_position
-		# TODO Tween this!
 
 	if is_over_inventory:
 		var x_mod = int(global_position.x) % 32
@@ -78,7 +75,6 @@ func try_set():
 		modulate = Color(1, 1, 1, 1)
 		can_drop = false
 		return true
-		
 	else:
 		return false
 		
@@ -93,7 +89,9 @@ func become_selected():
 	)
 	timer.start()
 
-	original_position = global_position
+	if is_first_drop:
+		original_position = global_position
+		is_first_drop = false
 	is_selected = true
 	in_place = false
 	return
