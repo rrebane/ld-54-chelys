@@ -21,27 +21,7 @@ func _ready():
 func _physics_process(delta):
 	if in_place:
 		return
-		
-	if not is_selected:
-		if Input.is_action_just_pressed(\"ui_accept\"):
-			var areas = get_overlapping_areas()
-			if areas.size() == 0:
-				set_in_place()
-
-			
-		var new_position = global_position
-		
-		if Input.is_action_just_pressed(\"ui_left\"):
-			new_position.x -= 32
-		if Input.is_action_just_pressed(\"ui_right\"):
-			new_position.x += 32
-		if Input.is_action_just_pressed(\"ui_up\"):
-			new_position.y -= 32
-		if Input.is_action_just_pressed(\"ui_down\"):
-			new_position.y += 32
-			
-		global_position = new_position
-	else:
+	elif is_selected:
 		followMouse()
 		
 	if is_over_inventory:
@@ -58,12 +38,14 @@ func followMouse():
 
 
 func _on_input_event(viewport, event, shape_idx):
+	print(\"called me\")
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
+		if event.pressed and not is_selected:
 			is_selected = true
-		else:
-			is_selected = false
-			set_in_place()
+			return
+		if event.pressed and is_selected:
+			if try_set():
+				is_selected = false
 	pass # Replace with function body.
 
 
@@ -84,9 +66,18 @@ func _on_area_exited(area):
 
 	pass # Replace with function body.
 
-func set_in_place():
-	in_place = true
-	modulate = Color(1, 1, 1, 1)
+func try_set():
+	var areas = get_overlapping_areas()
+	var is_blocked = false
+	for area in areas:
+		if area.is_in_group('item'):
+			is_blocked = true
+	if not is_blocked:
+		in_place = true
+		modulate = Color(1, 1, 1, 1)
+		return true
+	else:
+		return false
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nwij5"]
