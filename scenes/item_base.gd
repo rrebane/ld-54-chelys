@@ -21,14 +21,12 @@ func _ready():
 	input_event.connect(_on_input_event)
 
 func _physics_process(delta):
-	
 	if is_selected:
 		followMouse()
 		
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and can_drop:
-			print("called me")
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and can_drop and is_selected:
+			print("got left mouse, can drop si ", can_drop)
 			var did_set = try_set()
-			print(did_set)
 			if did_set:
 				is_selected = false
 		
@@ -52,20 +50,7 @@ func followMouse():
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed and not is_selected:
-			var timer = Timer.new()
-			timer.set_wait_time(0.1)
-			timer.one_shot = true
-			add_child(timer)
-			timer.timeout.connect(func():
-				print("hihi")
-				can_drop = true)
-			timer.start()
-		
-			original_position = global_position
-			is_selected = true
-			in_place = false
-			return
-	
+			become_selected()
 
 func _on_area_entered(area):
 	if area.is_in_group("inventory"):
@@ -87,14 +72,29 @@ func try_set():
 	for area in areas:
 		if area.is_in_group('item'):
 			is_blocked = true
-	print("Is blocked", is_blocked)
-	if is_blocked:
-		print(areas)
+	
 	if not is_blocked:
 		in_place = true
 		modulate = Color(1, 1, 1, 1)
-		input_event.disconnect(_on_input_event)
+		can_drop = false
 		return true
 		
 	else:
 		return false
+		
+func become_selected():
+	var timer = Timer.new()
+	timer.set_wait_time(0.2)
+	timer.one_shot = true
+	add_child(timer)
+	timer.timeout.connect(func():
+		can_drop = true
+		timer.queue_free()
+	)
+	timer.start()
+
+	original_position = global_position
+	is_selected = true
+	in_place = false
+	return
+
