@@ -3,9 +3,9 @@ extends Node2D
 enum Phase { COMBAT, INVENTORY }
 
 @export var enemies = [
-	"res://scenes/enemies/slime.tscn",
-	"res://scenes/enemies/slime.tscn",
-	"res://scenes/enemies/boss1.tscn"
+	preload("res://scenes/enemies/enemy.tscn"),
+	preload("res://scenes/enemies/enemy.tscn"),
+	preload("res://scenes/enemies/boss1.tscn")
 ]
 
 @onready var _combat_scene = preload("res://scenes/combat.tscn")
@@ -29,13 +29,13 @@ func config(params):
 
 func combat_phase():
 	var combat = _combat_scene.instantiate()
-	combat.enemy = enemies[_current_enemy]
+	combat.enemy_scene = enemies[_current_enemy]
 	add_child(combat)
-	$Backpack.hide_backpack()
+	$Backpack.hide()
 	
 func inventory_phase():
 	$Combat.queue_free()
-	$Backpack.show_backpack()
+	$Backpack.show()
 	
 func combat_end(win):
 	if win:

@@ -8,3 +8,5 @@ extends Node
 signal play_sfx
 signal combat_end
 signal dungeon_end
+signal player_death
+signal enemy_death

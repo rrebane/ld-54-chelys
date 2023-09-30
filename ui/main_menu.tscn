@@ -19,13 +19,13 @@ func on_pressed():
 	get_tree().quit()
 "
 
+[sub_resource type="Animation" id="Animation_m3pgr"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_qdr63"]
 resource_name = "idle"
 length = 4.0
 loop_mode = 1
-
-[sub_resource type="Animation" id="Animation_m3pgr"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_polan"]
 _data = {

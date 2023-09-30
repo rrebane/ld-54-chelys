@@ -16,9 +16,9 @@ func _process(delta):
 func items():
 	return $ItemContainer.get_children()
 
-func inventory_attribute(name):
+func inventory_attribute(attr_name):
 	var attribute = 0
 	for item in items():
-		if item.get(name) != null:
-			attribute += item.get(name)
+		if item.get(attr_name) != null:
+			attribute += item.get(attr_name)
 	return attribute

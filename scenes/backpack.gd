@@ -10,11 +10,3 @@ func _process(delta):
 	
 func config(params):
 	stash = params["stash"]
-
-func hide_backpack():
-	hide()
-	$CanvasLayer.hide()
-	
-func show_backpack():
-	show()
-	$CanvasLayer.show()
