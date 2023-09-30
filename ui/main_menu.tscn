@@ -18,7 +18,7 @@ script/source = "extends MainMenuButton
 
 func on_pressed():
 	EventsBus.play_sfx.emit(pressed_sound)
-	SceneSwitcher.goto_scene(\"res://ui/options.tscn\")
+	SceneSwitcher.goto_scene(\"res://scenes/shop.tscn\")
 	pass # Replace with function body.
 "
 
@@ -80,6 +80,20 @@ script = ExtResource("2_cgyle")
 pressed_sound = ExtResource("3_w2mim")
 
 [node name="Button2" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_u4u3q")
+text = "Upgrades"
+script = SubResource("GDScript_m4oab")
+pressed_sound = ExtResource("4_hc7hk")
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_u4u3q")
+text = "Options"
+script = SubResource("GDScript_m4oab")
+pressed_sound = ExtResource("4_hc7hk")
+
+[node name="Button4" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_u4u3q")
 text = "Credits"

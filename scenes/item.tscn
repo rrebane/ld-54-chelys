@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bilotgkucjisw"]
+[gd_scene load_steps=4 format=3 uid="uid://b4skg2ijqqxkl"]
 
 [ext_resource type="Texture2D" uid="uid://ccigs8tqyiwb4" path="res://assets/graphics/1_tile_item.png" id="1_4j0e2"]
 
@@ -6,6 +6,8 @@
 resource_name = "test"
 script/source = "extends Area2D
 
+@export var attack = 1
+@export var defence = 1
 
 var in_place = false
 
@@ -20,10 +22,30 @@ func _physics_process(delta):
 	if in_place:
 		return
 		
-	if is_selected:
+	if not is_selected:
+		if Input.is_action_just_pressed(\"ui_accept\"):
+			var areas = get_overlapping_areas()
+			if areas.size() == 0:
+				set_in_place()
+
+			
+		var new_position = global_position
+		
+		if Input.is_action_just_pressed(\"ui_left\"):
+			new_position.x -= 32
+		if Input.is_action_just_pressed(\"ui_right\"):
+			new_position.x += 32
+		if Input.is_action_just_pressed(\"ui_up\"):
+			new_position.y -= 32
+		if Input.is_action_just_pressed(\"ui_down\"):
+			new_position.y += 32
+			
+		global_position = new_position
+	else:
 		followMouse()
 		
 	if is_over_inventory:
+		
 		var x_mod = int(global_position.x) % 32
 		var y_mod = int(global_position.y) % 32
 		
@@ -37,15 +59,13 @@ func followMouse():
 
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed and not is_selected:
+		if event.pressed:
 			is_selected = true
-			return
-		if event.pressed and is_selected:
-			
-			var could_set = try_set()
-			if could_set:
-				is_selected = false
-	
+		else:
+			is_selected = false
+			set_in_place()
+	pass # Replace with function body.
+
 
 
 
@@ -64,17 +84,9 @@ func _on_area_exited(area):
 
 	pass # Replace with function body.
 
-func try_set():
-	var areas = get_overlapping_areas()
-	var is_blocked = false
-	for area in areas:
-		if area.is_in_group('item'):
-			is_blocked = true
-	if not is_blocked:
-		in_place = true
-		modulate = Color(1, 1, 1, 1)
-		return true
-	return false
+func set_in_place():
+	in_place = true
+	modulate = Color(1, 1, 1, 1)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nwij5"]

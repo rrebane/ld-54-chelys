@@ -6,3 +6,5 @@ extends Node
 # To handle signal in any script, do EventsBus.my_signal.connect(my_callback) 
 
 signal play_sfx
+signal combat_end
+signal dungeon_end
