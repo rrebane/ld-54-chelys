@@ -9,6 +9,8 @@ var is_selected = false
 
 var is_over_inventory = false
 
+var original_position = null
+
 func _ready():
 	modulate = Color(1, 1, 1, 0.5)
 	add_to_group('item')
@@ -38,13 +40,18 @@ func followMouse():
 func _on_input_event(viewport, event, shape_idx):
 	print("called me")
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+
 		if event.pressed and not is_selected:
+			original_position = global_position
 			is_selected = true
 			return
 		if event.pressed and is_selected:
 			if try_set():
 				is_selected = false
-	pass # Replace with function body.
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
+		is_selected = false
+		global_position = original_position
+		# TODO Tween this!
 
 
 
