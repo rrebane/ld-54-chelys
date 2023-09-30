@@ -1,26 +1,36 @@
-[gd_scene load_steps=8 format=3 uid="uid://lp34cu5pjyah"]
+[gd_scene load_steps=14 format=3 uid="uid://lp34cu5pjyah"]
 
-[ext_resource type="Theme" uid="uid://b1rse5hojok5d" path="res://assets/ui_themes/Default.tres" id="1_u4u3q"]
+[ext_resource type="Texture2D" uid="uid://bh2e0t8mekwh8" path="res://assets/start_screen/START_BACKROUND.png" id="1_tvmi2"]
+[ext_resource type="Texture2D" uid="uid://co1m0yvf28sia" path="res://assets/start_screen/START_GHOST.png" id="2_2mvfh"]
 [ext_resource type="Script" path="res://ui/StartButton.gd" id="2_cgyle"]
-[ext_resource type="AudioStream" uid="uid://dd7kmgwlqs6vf" path="res://assets/sfx/blip.wav" id="3_w2mim"]
-[ext_resource type="AudioStream" uid="uid://trs7p5574fea" path="res://assets/sfx/confirm_1.wav" id="4_hc7hk"]
+[ext_resource type="Texture2D" uid="uid://du4m265thuf61" path="res://assets/start_screen/START_LOGO.png" id="3_fhdp2"]
+[ext_resource type="Texture2D" uid="uid://m67pfyff54u" path="res://assets/start_screen/START.png" id="5_jq7gy"]
+[ext_resource type="Texture2D" uid="uid://cdle70aaixekl" path="res://assets/start_screen/EXIT.png" id="7_4t0x5"]
+[ext_resource type="Texture2D" uid="uid://dfe73nfyr3fuq" path="res://assets/start_screen/OPTIONS.png" id="8_cbcg5"]
+[ext_resource type="Script" path="res://ui/OptionsButton.gd" id="8_kxhut"]
+[ext_resource type="Texture2D" uid="uid://cv0j4sl5rgv7y" path="res://assets/start_screen/CREDIT.png" id="10_vsgud"]
 
-[sub_resource type="Gradient" id="Gradient_8jedg"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_24ywf"]
-gradient = SubResource("Gradient_8jedg")
-
-[sub_resource type="GDScript" id="GDScript_m4oab"]
-resource_name = "MainMenuOptions"
+[sub_resource type="GDScript" id="GDScript_ewaxt"]
+resource_name = "Quit"
 script/source = "extends MainMenuButton
 
 func on_pressed():
-	EventsBus.play_sfx.emit(pressed_sound)
-	SceneSwitcher.goto_scene(\"res://scenes/shop.tscn\")
-	pass # Replace with function body.
+	get_tree().quit()
 "
+
+[sub_resource type="Animation" id="Animation_qdr63"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_m3pgr"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_polan"]
+_data = {
+"RESET": SubResource("Animation_m3pgr"),
+"idle": SubResource("Animation_qdr63")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -37,65 +47,69 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_24ywf")
+texture = ExtResource("1_tvmi2")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 13.3471
+offset_bottom = 13.3472
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+texture = ExtResource("2_2mvfh")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.86935
+offset_bottom = -1.86938
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_fhdp2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -173.0
+offset_top = -506.0
+offset_right = 173.0
+offset_bottom = -105.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/margin_bottom = 20
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/MarginContainer"]
-layout_mode = 2
-theme = ExtResource("1_u4u3q")
-theme_override_font_sizes/font_size = 48
-text = "The Game"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
-layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 20
+alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_u4u3q")
-text = "Play!"
+texture_normal = ExtResource("5_jq7gy")
 script = ExtResource("2_cgyle")
-pressed_sound = ExtResource("3_w2mim")
 
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="TextureButton2" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_u4u3q")
-text = "Upgrades"
-script = SubResource("GDScript_m4oab")
-pressed_sound = ExtResource("4_hc7hk")
+texture_normal = ExtResource("8_cbcg5")
+script = ExtResource("8_kxhut")
 
-[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="TextureButton3" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_u4u3q")
-text = "Options"
-script = SubResource("GDScript_m4oab")
-pressed_sound = ExtResource("4_hc7hk")
+texture_normal = ExtResource("10_vsgud")
 
-[node name="Button4" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="TextureButton4" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_u4u3q")
-text = "Credits"
-script = SubResource("GDScript_m4oab")
-pressed_sound = ExtResource("4_hc7hk")
+texture_normal = ExtResource("7_4t0x5")
+script = SubResource("GDScript_ewaxt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_polan")
+}

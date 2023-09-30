@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 class_name  MainMenuButton
 
 @export var pressed_sound : AudioStream
