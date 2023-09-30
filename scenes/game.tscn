@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://e0bjqlwemrq3"]
+[gd_scene load_steps=3 format=3 uid="uid://e0bjqlwemrq3"]
 
 [ext_resource type="Texture2D" uid="uid://bpbkskhqxu0mf" path="res://icon.svg" id="1_1jlf3"]
+[ext_resource type="PackedScene" uid="uid://cpuovt12cxxoo" path="res://scenes/inventory.tscn" id="2_djy3m"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(208, 126)
 texture = ExtResource("1_1jlf3")
+
+[node name="Inventory" parent="." instance=ExtResource("2_djy3m")]

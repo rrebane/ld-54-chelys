@@ -1,0 +1,108 @@
+[gd_scene load_steps=4 format=3 uid="uid://bilotgkucjisw"]
+
+[ext_resource type="Texture2D" uid="uid://ccigs8tqyiwb4" path="res://assets/graphics/1_tile_item.png" id="1_4j0e2"]
+
+[sub_resource type="GDScript" id="GDScript_2hf58"]
+resource_name = "test"
+script/source = "extends Area2D
+
+
+var in_place = false
+
+var is_selected = false
+
+var is_over_inventory = false
+
+func _ready():
+	modulate = Color(1, 1, 1, 0.5)
+
+func _physics_process(delta):
+	if in_place:
+		return
+		
+	if not is_selected:
+		if Input.is_action_just_pressed(\"ui_accept\"):
+			var areas = get_overlapping_areas()
+			if areas.size() == 0:
+				set_in_place()
+
+			
+		var new_position = global_position
+		
+		if Input.is_action_just_pressed(\"ui_left\"):
+			new_position.x -= 32
+		if Input.is_action_just_pressed(\"ui_right\"):
+			new_position.x += 32
+		if Input.is_action_just_pressed(\"ui_up\"):
+			new_position.y -= 32
+		if Input.is_action_just_pressed(\"ui_down\"):
+			new_position.y += 32
+			
+		global_position = new_position
+	else:
+		followMouse()
+		
+	if is_over_inventory:
+		
+		var x_mod = int(global_position.x) % 32
+		var y_mod = int(global_position.y) % 32
+		
+		global_position.x -= x_mod
+		global_position.y -= y_mod
+
+
+func followMouse():
+	global_position = get_global_mouse_position()
+
+
+func _on_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			is_selected = true
+		else:
+			is_selected = false
+			set_in_place()
+	pass # Replace with function body.
+
+
+
+
+func _on_area_entered(area):
+	print(\"Area entered!\")
+	if area.is_in_group(\"inventory\"):
+		is_over_inventory = true
+	pass # Replace with function body.
+
+
+
+func _on_area_exited(area):
+	if area.is_in_group(\"inventory\"):
+		is_over_inventory = false
+		
+
+	pass # Replace with function body.
+
+func set_in_place():
+	in_place = true
+	modulate = Color(1, 1, 1, 1)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwij5"]
+size = Vector2(30, 30)
+
+[node name="Item" type="Area2D" groups=["item"]]
+collision_mask = 3
+script = SubResource("GDScript_2hf58")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4j0e2")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color(1, 1, 1, 0.654902)
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_nwij5")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
