@@ -34,12 +34,12 @@ theme = ExtResource("2_d1563")
 text = "COMBAT"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(969, 547)
-scale = Vector2(1.82231, 1.82231)
+position = Vector2(960, 541)
+scale = Vector2(2.04726, 2.04726)
 texture = ExtResource("3_desjg")
 
 [node name="PlayerPosition" type="Node2D" parent="."]
-position = Vector2(388, 661)
+position = Vector2(287, 673)
 
 [node name="EnemyPosition" type="Node2D" parent="."]
-position = Vector2(1528, 661)
+position = Vector2(1590, 667)
