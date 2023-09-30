@@ -16,4 +16,10 @@ position = Vector2(866, 17)
 position = Vector2(0, 79)
 texture = ExtResource("2_8qf5s")
 
+[node name="Item3" parent="Node2D/StashBg" instance=ExtResource("3_y7urc")]
+position = Vector2(23, 36)
+
 [node name="Item" parent="Node2D/StashBg" instance=ExtResource("3_y7urc")]
+position = Vector2(-86, 36)
+
+[node name="Item2" parent="Node2D/StashBg" instance=ExtResource("3_y7urc")]
