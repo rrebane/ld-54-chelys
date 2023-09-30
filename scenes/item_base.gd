@@ -1,5 +1,5 @@
 extends Area2D
-class_name ItemBase
+
 @export var attack = 1
 @export var defence = 1
 
@@ -38,14 +38,15 @@ func followMouse():
 
 
 func _on_input_event(viewport, event, shape_idx):
-	print("called me")
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-
+		print("Here")
 		if event.pressed and not is_selected:
+			print("Here I am")
 			original_position = global_position
 			is_selected = true
 			return
 		if event.pressed and is_selected:
+			print("Here again")
 			if try_set():
 				is_selected = false
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
@@ -76,9 +77,13 @@ func try_set():
 	for area in areas:
 		if area.is_in_group('item'):
 			is_blocked = true
+	print("Is blocked", is_blocked)
+	if is_blocked:
+		print(areas)
 	if not is_blocked:
 		in_place = true
 		modulate = Color(1, 1, 1, 1)
 		return true
+		input_event.disconnect(_on_input_event)
 	else:
 		return false

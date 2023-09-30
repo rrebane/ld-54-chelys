@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2ms23e7d2uun"]
+
+[ext_resource type="Script" path="res://scenes/item_base.gd" id="1_lex7q"]
+[ext_resource type="Texture2D" uid="uid://ccigs8tqyiwb4" path="res://assets/graphics/1_tile_item.png" id="2_sp0d5"]
+
+[node name="ItemSmall" type="Area2D"]
+script = ExtResource("1_lex7q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_sp0d5")
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(30, 30, 2, 30, 2, 2, 30, 2)
