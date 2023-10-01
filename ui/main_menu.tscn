@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://m67pfyff54u" path="res://assets/start_screen/START.png" id="5_jq7gy"]
 [ext_resource type="AudioStream" uid="uid://21pvdnrtnpy" path="res://assets/sfx/creepy button press.wav" id="6_ilru3"]
 [ext_resource type="Texture2D" uid="uid://cdle70aaixekl" path="res://assets/start_screen/EXIT.png" id="7_4t0x5"]
-[ext_resource type="Texture2D" uid="uid://dfe73nfyr3fuq" path="res://assets/start_screen/OPTIONS.png" id="8_cbcg5"]
+[ext_resource type="Texture2D" uid="uid://cwtuiv3xapwco" path="res://ui/HOW_TO_PLAY if needed.png" id="7_mb8gr"]
 [ext_resource type="Script" path="res://ui/OptionsButton.gd" id="8_kxhut"]
 [ext_resource type="Script" path="res://ui/TextureButton3.gd" id="10_eb2rf"]
 [ext_resource type="Texture2D" uid="uid://cv0j4sl5rgv7y" path="res://assets/start_screen/CREDIT.png" id="10_vsgud"]
@@ -80,10 +80,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -173.0
-offset_top = -506.0
-offset_right = 173.0
-offset_bottom = -105.0
+offset_left = -176.0
+offset_top = -562.0
+offset_right = 170.0
+offset_bottom = -161.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -99,7 +99,7 @@ pressed_sound = ExtResource("6_ilru3")
 
 [node name="TextureButton2" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("8_cbcg5")
+texture_normal = ExtResource("7_mb8gr")
 script = ExtResource("8_kxhut")
 
 [node name="TextureButton3" type="TextureButton" parent="VBoxContainer"]
