@@ -1,22 +1,51 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtaxax47wrytn"]
+[gd_scene load_steps=8 format=3 uid="uid://dtaxax47wrytn"]
 
 [ext_resource type="Script" path="res://scenes/backpack.gd" id="1_6ncac"]
 [ext_resource type="PackedScene" uid="uid://blfwt68jqu2yb" path="res://scenes/inventory.tscn" id="1_i75je"]
+[ext_resource type="Theme" uid="uid://b1rse5hojok5d" path="res://assets/ui_themes/Default.tres" id="2_qkk71"]
 [ext_resource type="PackedScene" uid="uid://djh124xel8scf" path="res://scenes/items/level1/buckler.tscn" id="3_5fxaq"]
 [ext_resource type="PackedScene" uid="uid://bf5mngrbd1org" path="res://scenes/items/level1/dagger.tscn" id="3_o6yc3"]
 [ext_resource type="PackedScene" uid="uid://cmylrn7isih2q" path="res://scenes/items/level1/health_potion_small.tscn" id="5_svse6"]
+[ext_resource type="Texture2D" uid="uid://c4d564d0dl7xk" path="res://assets/graphics/backgrounds/BACKPACK_INV.png" id="6_ht6np"]
 
 [node name="Backpack" type="Node2D"]
 script = ExtResource("1_6ncac")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -924.0
+offset_top = 97.0
+offset_right = -37.0
+offset_bottom = 417.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_qkk71")
+text = "Test"
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("6_ht6np")
+centered = false
+
 [node name="Inventory" parent="." instance=ExtResource("1_i75je")]
-position = Vector2(0, 0)
+position = Vector2(472, 806)
 
 [node name="Buckler" parent="." instance=ExtResource("3_5fxaq")]
-position = Vector2(823, 521)
+position = Vector2(1063, 718)
 
 [node name="Item" parent="." instance=ExtResource("3_o6yc3")]
-position = Vector2(1033, 581)
+position = Vector2(1254, 707)
 
 [node name="Item2" parent="." instance=ExtResource("5_svse6")]
-position = Vector2(1223, 548)
+position = Vector2(1366, 738)

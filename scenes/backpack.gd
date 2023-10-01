@@ -15,6 +15,8 @@ var _action_just_happened = false
 func _ready():
 	EventsBus.item_picked_up.connect(_on_item_pickup)
 	EventsBus.item_dropped.connect(_on_item_drop)
+	
+	$CanvasLayer/Control/Label.text = "Choose the items for your journey"
 
 func _process(delta):
 	if GlobalState.debug and Input.is_action_just_pressed("debug_attack_stat"):
@@ -37,6 +39,7 @@ func inventory_attribute(attr_name):
 	return attribute
 
 func _physics_process(delta):
+	
 	_action_just_happened = false
 	
 	if _selected_item:
@@ -62,6 +65,8 @@ func _on_item_pickup(item):
 	
 	_action_just_happened = true
 	
+	_update_info(item)
+	
 func _on_item_drop(_item):
 	_current_action_timeout = action_timeout
 	
@@ -70,6 +75,8 @@ func _on_item_drop(_item):
 	
 	_selected_item = null
 	_action_just_happened = true
+	
+	_clear_item_info()
 	
 func _follow_mouse_grid(item):
 	var new_position = get_global_mouse_position()
@@ -92,3 +99,19 @@ func can_pick_up():
 		return false
 
 	return _can_pickup
+
+
+func _update_info(item):
+	$CanvasLayer/Control/Label.text = ""
+	$CanvasLayer/Control/Label.text += 'attack: {attack}'.format({'attack': item.attack})
+	$CanvasLayer/Control/Label.text += '\n' + 'defence: {attack}'.format({'attack': item.attack})
+	$CanvasLayer/Control/Label.text += '\n' + 'health: {attack}'.format({'attack': item.attack})
+
+func _clear_item_info():
+	$CanvasLayer/Control/Label.text = "Choose the items for your journey!"
+	$CanvasLayer/Control/Label.text += "\nSelect an item to see its stats!"
+	$CanvasLayer/Control/Label.text += "\n\nPress SPACE to depart!"
+
+func get_items_in_inventory():
+	return $Inventory.get_items_in_inventory()
+
