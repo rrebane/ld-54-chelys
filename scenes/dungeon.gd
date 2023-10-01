@@ -31,11 +31,11 @@ func combat_phase():
 	combat.enemy_scene = enemies[_current_enemy]
 	combat.is_boss = _current_enemy + 1 >= len(enemies)
 	add_child(combat)
-	$Backpack.hide()
+	$Backpack.hide_backpack()
 	
 func inventory_phase():
 	$Combat.queue_free()
-	$Backpack.show()
+	$Backpack.show_backpack()
 	
 func combat_end(win):
 	if win:

@@ -100,6 +100,13 @@ func can_pick_up():
 
 	return _can_pickup
 
+func hide_backpack():
+	$CanvasLayer/Control.hide()
+	hide()
+	
+func show_backpack():
+	$CanvasLayer/Control.show()
+	show()
 
 func _update_info(item):
 	$CanvasLayer/Control/Label.text = ""
