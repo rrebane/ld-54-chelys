@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://blfwt68jqu2yb" path="res://scenes/inventory.tscn" id="1_i75je"]
 [ext_resource type="Theme" uid="uid://b1rse5hojok5d" path="res://assets/ui_themes/Default.tres" id="2_qkk71"]
 [ext_resource type="PackedScene" uid="uid://djh124xel8scf" path="res://scenes/items/level1/buckler.tscn" id="3_5fxaq"]
+[ext_resource type="Texture2D" uid="uid://b7qm3ljtiqped" path="res://assets/graphics/backgrounds/BACKPACK.png" id="3_fodg7"]
 [ext_resource type="PackedScene" uid="uid://bf5mngrbd1org" path="res://scenes/items/level1/dagger.tscn" id="3_o6yc3"]
 [ext_resource type="PackedScene" uid="uid://cmylrn7isih2q" path="res://scenes/items/level1/health_potion_small.tscn" id="5_svse6"]
-[ext_resource type="Texture2D" uid="uid://c4d564d0dl7xk" path="res://assets/graphics/backgrounds/BACKPACK_INV.png" id="6_ht6np"]
 
 [node name="Backpack" type="Node2D"]
 script = ExtResource("1_6ncac")
@@ -35,7 +35,7 @@ theme = ExtResource("2_qkk71")
 text = "Test"
 
 [node name="background" type="Sprite2D" parent="."]
-texture = ExtResource("6_ht6np")
+texture = ExtResource("3_fodg7")
 centered = false
 
 [node name="Inventory" parent="." instance=ExtResource("1_i75je")]
