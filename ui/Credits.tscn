@@ -1,0 +1,110 @@
+[gd_scene load_steps=6 format=3 uid="uid://fsemqftu63jc"]
+
+[ext_resource type="Texture2D" uid="uid://cnef8cp6c83yr" path="res://assets/graphics/backgrounds/credit.png" id="1_6c0r1"]
+[ext_resource type="Script" path="res://ui/Credits.gd" id="1_rtja6"]
+[ext_resource type="Texture2D" uid="uid://co1m0yvf28sia" path="res://assets/start_screen/START_GHOST.png" id="2_yqkx6"]
+[ext_resource type="Theme" uid="uid://b1rse5hojok5d" path="res://assets/ui_themes/Default.tres" id="3_uex1e"]
+[ext_resource type="Texture2D" uid="uid://diuqxr1dg1f3s" path="res://assets/start_screen/BACK.png" id="4_dy01i"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rtja6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6c0r1")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_yqkx6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_right = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_uex1e")
+theme_override_font_sizes/font_size = 48
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_uex1e")
+theme_override_font_sizes/font_size = 24
+text = "Marta Rein
+2D art, game design
+(Discord: fluffc)
+
+
+Sofia Veritševa
+(Discord: lloydxx)
+2D art, game design
+
+
+Sofia Zimina
+(Discord: ddummyy)
+2D art, game design
+
+Reimo Rebane
+github.com/rrebane
+Programming, game design
+
+Erki Vaino
+github.com/erxx99
+Game design, project management
+
+Mart Lepanen
+github.com/martialis39
+Programming, Game design"
+horizontal_alignment = 1
+
+[node name="Back" type="TextureButton" parent="."]
+modulate = Color(0.160784, 0.152941, 0.152941, 1)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -563.0
+offset_top = -353.0
+offset_right = -338.0
+offset_bottom = -257.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("4_dy01i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
