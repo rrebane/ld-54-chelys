@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://cck1dpgtp0x71"]
+
+[ext_resource type="Script" path="res://ui/Credits.gd" id="1_8gekr"]
+[ext_resource type="Texture2D" uid="uid://cnef8cp6c83yr" path="res://assets/graphics/backgrounds/credit.png" id="2_wyysv"]
+[ext_resource type="Theme" uid="uid://b1rse5hojok5d" path="res://assets/ui_themes/Default.tres" id="3_scv6f"]
+[ext_resource type="Texture2D" uid="uid://diuqxr1dg1f3s" path="res://assets/start_screen/BACK.png" id="4_87myv"]
+
+[node name="HowToPlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8gekr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wyysv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 297.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_scv6f")
+theme_override_font_sizes/font_size = 48
+text = "How to play"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_scv6f")
+theme_override_font_sizes/font_size = 24
+text = "How to play: This is an incremental inventory management game (or at least an attempt at it).
+Enter a dungeon. Fight monsters and get better loot. Conquer the dungeon by defeating the final boss."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Back" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1077.0
+offset_top = -474.0
+offset_right = -852.0
+offset_bottom = -378.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("4_87myv")
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed" flags=18]
