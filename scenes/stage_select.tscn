@@ -5,6 +5,21 @@
 [ext_resource type="Texture2D" uid="uid://b8bbn5w0t0pi1" path="res://assets/graphics/backgrounds/stage_select_bg.PNG" id="3_56qdi"]
 [ext_resource type="Texture2D" uid="uid://wc1e0an4i1ga" path="res://assets/graphics/backgrounds/stage_select_cross.PNG" id="4_ghdmq"]
 
+[sub_resource type="Animation" id="Animation_ulkn3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect/TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_c1uwv"]
 resource_name = "hover"
 loop_mode = 1
@@ -19,21 +34,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.2, 1.2)]
-}
-
-[sub_resource type="Animation" id="Animation_ulkn3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/TextureRect/TextureRect:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uoskc"]
@@ -81,10 +81,10 @@ texture = ExtResource("3_56qdi")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/TextureRect"]
 layout_mode = 0
-offset_left = 326.0
-offset_top = 191.0
-offset_right = 418.0
-offset_bottom = 283.0
+offset_left = 943.0
+offset_top = 470.0
+offset_right = 1035.0
+offset_bottom = 562.0
 texture = ExtResource("4_ghdmq")
 expand_mode = 1
 
