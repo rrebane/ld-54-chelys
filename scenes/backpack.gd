@@ -1,14 +1,19 @@
 extends Node2D
 
+@export var action_timeout = 0.1
+
 var stash = []
 
 var _selected_item = null
 var _can_drop = false
 var _can_pickup = true
 
+var _current_action_timeout = 0
+var _action_just_happened = false
+
 func _ready():
 	EventsBus.item_picked_up.connect(_on_item_pickup)
-	pass # Replace with function body.
+	EventsBus.item_dropped.connect(_on_item_drop)
 
 func _process(delta):
 	if GlobalState.debug and Input.is_action_just_pressed("debug_attack_stat"):
@@ -31,48 +36,39 @@ func inventory_attribute(attr_name):
 	return attribute
 
 func _physics_process(delta):
+	_action_just_happened = false
+	
 	if _selected_item:
-		
 		_follow_mouse_grid(_selected_item)
+	
+	if _current_action_timeout > 0:
+		_current_action_timeout -= delta
+		return
+	
+	if _selected_item:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 			_selected_item.return_to_original_position()
-			_selected_item = null
-			return
-		
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and _can_drop:
-			var could_set_item = _selected_item.try_set()
-			if could_set_item:
-				_selected_item = null
-				_can_drop = false
-				_can_pickup = false
-				var timer = Timer.new()
-				timer.set_wait_time(0.1)
-				timer.one_shot = true
-				add_child(timer)
-				timer.timeout.connect(func():
-					_can_pickup = true
-					timer.queue_free()
-				)
-				timer.start()
-				
+			_on_item_drop(_selected_item)
+		elif Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and _can_drop:
+			_selected_item.try_set()
 
-			
-		
 func _on_item_pickup(item):
-	if not _can_pickup or _selected_item:
-		return
+	_current_action_timeout = action_timeout
 		
-	_can_drop = false
-	var timer = Timer.new()
-	timer.set_wait_time(0.1)
-	timer.one_shot = true
-	add_child(timer)
-	timer.timeout.connect(func():
-		_can_drop = true
-		timer.queue_free()
-	)
-	timer.start()
+	_can_drop = true
+	_can_pickup = false
 	_selected_item = item
+	
+	_action_just_happened = true
+	
+func _on_item_drop(_item):
+	_current_action_timeout = action_timeout
+	
+	_can_drop = false
+	_can_pickup = true
+	
+	_selected_item = null
+	_action_just_happened = true
 	
 func _follow_mouse_grid(item):
 	var new_position = get_global_mouse_position()
@@ -83,3 +79,15 @@ func _follow_mouse_grid(item):
 	new_position.y = int(new_position.y) - y_mod
 	
 	item.global_position = new_position
+
+func can_drop():
+	if _current_action_timeout > 0 or _action_just_happened:
+		return false
+
+	return _can_drop
+
+func can_pick_up():
+	if _current_action_timeout > 0 or _action_just_happened:
+		return false
+
+	return _can_pickup
