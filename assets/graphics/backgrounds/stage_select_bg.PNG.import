@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bja70pg8vo3li"
-path="res://.godot/imported/ScreenSelectBg.PNG-8f887c7344012ab4dffee3e79a8cbcc8.ctex"
+uid="uid://b8bbn5w0t0pi1"
+path="res://.godot/imported/stage_select_bg.PNG-0b53e345b17e30e09a71e98019a397a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/backgrounds/ScreenSelectBg.PNG"
-dest_files=["res://.godot/imported/ScreenSelectBg.PNG-8f887c7344012ab4dffee3e79a8cbcc8.ctex"]
+source_file="res://assets/graphics/backgrounds/stage_select_bg.PNG"
+dest_files=["res://.godot/imported/stage_select_bg.PNG-0b53e345b17e30e09a71e98019a397a0.ctex"]
 
 [params]
 
