@@ -10,6 +10,7 @@ enum State { PLAYER_TURN, ENEMY_TURN, COMBAT_END }
 
 var player_scene = preload("res://scenes/player.tscn")
 var enemy_scene = preload("res://scenes/enemies/enemy.tscn")
+var is_boss = false
 
 var _current_state = State.PLAYER_TURN
 var _turn_time_left = 0
@@ -22,14 +23,24 @@ var _combat_result = {}
 func _ready():
 	_player = player_scene.instantiate()
 	_enemy = enemy_scene.instantiate()
-	$PlayerPosition.add_child(_player)
-	$EnemyPosition.add_child(_enemy)
+
+	if is_boss:
+		$PlayerPosition2.add_child(_player)
+		$BossPosition.add_child(_enemy)
+		
+		$Sprite2D.hide()
+		$Sprite2DBoss.show()
+	else:
+		$PlayerPosition.add_child(_player)
+		$EnemyPosition.add_child(_enemy)
+	
+		$Sprite2D.show()
+		$Sprite2DBoss.hide()
+		
+	_overlay.show()
 	
 	EventsBus.player_death.connect(_player_death)
 	EventsBus.enemy_death.connect(_enemy_death)
-	
-	_overlay.show()
-	
 	EventsBus.add_to_combat_log.connect(_add_to_combat_log)
 
 func _process(delta):

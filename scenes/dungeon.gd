@@ -4,9 +4,9 @@ enum Phase { COMBAT, INVENTORY }
 
 @export var enemies = [
 	preload("res://scenes/enemies/enemy.tscn"),
-	preload("res://scenes/enemies/enemy2.tscn"),
-	preload("res://scenes/enemies/enemy3.tscn"),
-	preload("res://scenes/enemies/enemy4.tscn"),
+	#preload("res://scenes/enemies/enemy2.tscn"),
+	#preload("res://scenes/enemies/enemy3.tscn"),
+	#preload("res://scenes/enemies/enemy4.tscn"),
 	preload("res://scenes/enemies/boss1.tscn")
 ]
 
@@ -29,6 +29,7 @@ func _process(delta):
 func combat_phase():
 	var combat = _combat_scene.instantiate()
 	combat.enemy_scene = enemies[_current_enemy]
+	combat.is_boss = _current_enemy + 1 >= len(enemies)
 	add_child(combat)
 	$Backpack.hide()
 	
