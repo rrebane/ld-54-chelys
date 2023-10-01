@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cohqjtycmwerf"]
+[gd_scene load_steps=10 format=3 uid="uid://cohqjtycmwerf"]
 
 [ext_resource type="Script" path="res://scenes/Combat.gd" id="1_ckvl8"]
 [ext_resource type="Texture2D" uid="uid://c7ka76rmulboa" path="res://assets/graphics/BATTLE_SCREEN.png" id="2_17xfi"]
 [ext_resource type="Theme" uid="uid://b1rse5hojok5d" path="res://assets/ui_themes/Default.tres" id="2_d1563"]
 [ext_resource type="Texture2D" uid="uid://cosb5nb0d86b4" path="res://assets/graphics/boss1_scene.png" id="4_76m3f"]
 [ext_resource type="Texture2D" uid="uid://dk7wa3g4t0gnw" path="res://assets/graphics/BATTLE_SCREEN_GOATMAN_BACKROUND.png" id="4_qgnhw"]
+[ext_resource type="Script" path="res://scenes/player_stats.gd" id="6_0c7ix"]
+[ext_resource type="Script" path="res://scenes/enemy_stats.gd" id="7_n1rjy"]
 
 [sub_resource type="Animation" id="Animation_l16nj"]
 resource_name = "boss1_intro"
@@ -109,6 +111,52 @@ theme_override_constants/margin_bottom = 20
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect/MarginContainer"]
 layout_mode = 2
 scroll_following = true
+
+[node name="Control2" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 34.0
+offset_top = 11.0
+offset_right = 841.0
+offset_bottom = 135.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_d1563")
+text = "Player ATK: 0 DEF 0 HP: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_0c7ix")
+
+[node name="Control3" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 68.0
+offset_top = 22.0
+offset_right = 875.0
+offset_bottom = 146.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1013.0
+offset_top = -4.0
+offset_right = 1013.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_d1563")
+text = "Enemy ATK: 0 DEF 0 HP: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_n1rjy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

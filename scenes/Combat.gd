@@ -34,6 +34,8 @@ func _ready():
 		$Sprite2DBoss.hide()
 		$Sprite2DBossIntro.show()
 		$CanvasLayer/Control.hide()
+		$CanvasLayer/Control2.hide()
+		$CanvasLayer/Control3.hide()
 		_enemy.hide()
 		
 		_boss_intro_player.animation_finished.connect(_boss_intro_finished)
@@ -46,6 +48,8 @@ func _ready():
 		$Sprite2DBoss.hide()
 		$Sprite2DBossIntro.hide()
 		$CanvasLayer/Control.show()
+		$CanvasLayer/Control2.show()
+		$CanvasLayer/Control3.show()
 		_enemy.show()
 		
 		_current_state = State.PLAYER_TURN
@@ -59,11 +63,6 @@ func _ready():
 	EventsBus.add_to_combat_log.connect(_add_to_combat_log)
 
 func _process(delta):
-	if GlobalState.debug and Input.is_action_just_pressed("debug_combat_win"):
-		_enemy_death(5)
-	if GlobalState.debug and Input.is_action_just_pressed("debug_combat_lose"):
-		_player_death()
-	
 	if _turn_time_left > 0:
 		_turn_time_left -= delta
 		return
@@ -102,6 +101,8 @@ func _boss_intro_finished(_anim_name):
 	$Sprite2DBoss.show()
 	$Sprite2DBossIntro.hide()
 	$CanvasLayer/Control.show()
+	$CanvasLayer/Control2.show()
+	$CanvasLayer/Control3.show()
 	_enemy.show()
 	
 	_current_state = State.PLAYER_TURN

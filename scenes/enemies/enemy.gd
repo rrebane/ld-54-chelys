@@ -17,8 +17,11 @@ extends Node2D
 signal enemy_died
 
 func _ready():
-
-	pass
+	EventsBus.update_enemy_status.emit({
+		"attack": _attack,
+		"defence": _defence,
+		"health": _health
+	})
 
 func _process(delta):
 	pass
@@ -33,7 +36,9 @@ func take_damage(damage):
 		var dmg = max(damage - _defence, 1)
 		EventsBus.add_to_combat_log.emit("{name} got hit for  {damage} damage".format({"name": display_name, "damage": dmg}))
 		_health -= dmg
+		EventsBus.update_enemy_status.emit({"health": _health})
 		if _health <= 0:
+			_health = 0
 			die()
 
 func die():

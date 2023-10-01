@@ -1,6 +1,10 @@
 extends Node2D
 
+@export var phase_switch_delay = 1.0
+
 enum Phase { COMBAT, INVENTORY }
+
+var _phase_timeout = 0
 
 @export var enemies = [
 	preload("res://scenes/enemies/enemy.tscn"),
@@ -19,9 +23,12 @@ func _ready():
 	EventsBus.combat_end.connect(combat_end)
 
 func _process(delta):
+	if _phase_timeout > 0:
+		_phase_timeout -= delta
+	
 	match _current_phase:
 		Phase.INVENTORY:
-			if GlobalState.debug and Input.is_action_just_pressed("debug_combat_phase"):
+			if Input.is_action_just_pressed("combat_phase"):
 				combat_phase()
 		Phase.COMBAT:
 			pass
@@ -33,9 +40,15 @@ func combat_phase():
 	add_child(combat)
 	$Backpack.hide_backpack()
 	
+	_current_phase = Phase.COMBAT
+	_phase_timeout = phase_switch_delay
+	
 func inventory_phase():
 	$Combat.queue_free()
 	$Backpack.show_backpack()
+	
+	_current_phase = Phase.INVENTORY
+	_phase_timeout = phase_switch_delay
 	
 func combat_end(win):
 	if win:
