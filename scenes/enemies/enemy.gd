@@ -32,14 +32,12 @@ func take_damage(damage):
 		_animation_player.play("take_damage")
 		var dmg = max(damage - _defence, 1)
 		EventsBus.add_to_combat_log.emit("{name} got hit for {damage} damage".format({"name": display_name, "damage": dmg}))
-		print("{name} got hit for {damage} damage".format({"name": display_name, "damage": dmg}))
 		_health -= dmg
 		if _health <= 0:
 			die()
 
 func die():
 	_animation_player.play("die")
-	print("Enemy died")
 	if len(victory_text) > 0:
 		EventsBus.enemy_death.emit(_gold, victory_text)
 	else:

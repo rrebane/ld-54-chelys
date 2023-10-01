@@ -59,14 +59,14 @@ func _process(delta):
 func _player_death():
 	_combat_result["winner"] = Result.PLAYER_LOSE
 	_current_state = State.COMBAT_END
-	_add_to_combat_log("You were defeated!\n\nPress SPACE to return to main menu.")
+	_add_to_combat_log("\nYou were defeated!\nPress SPACE to return to main menu.")
 	_overlay.show()
 	
 func _enemy_death(gold_earned, text = "You won!"):
 	_combat_result["gold"] = gold_earned
 	_combat_result["winner"] = Result.PLAYER_WIN
 	_current_state = State.COMBAT_END
-	_add_to_combat_log("{text} You earned {gold} gold.\n\nPress SPACE to continue.".format({"text": text, "gold": gold_earned}))
+	_add_to_combat_log("\n{text} You earned {gold} gold.\nPress SPACE to continue.".format({"text": text, "gold": gold_earned}))
 	_overlay.show()
 		
 func player_turn():

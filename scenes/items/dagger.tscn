@@ -1,3 +1,14 @@
-[gd_scene format=3 uid="uid://brpbbqchphk23"]
+[gd_scene load_steps=3 format=3 uid="uid://bf5mngrbd1org"]
 
-[node name="dagger" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://v2dv1vyy7j8i" path="res://assets/graphics/l_shaped_item.png" id="1_c8n8t"]
+[ext_resource type="Script" path="res://scenes/items/item_base.gd" id="1_f70ed"]
+
+[node name="item" type="Area2D"]
+script = ExtResource("1_f70ed")
+
+[node name="LShapedItem" type="Sprite2D" parent="."]
+texture = ExtResource("1_c8n8t")
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(62, 30, 32, 30, 32, 31, 31, 31, 31, 32, 30, 32, 30, 94, 2, 94, 2, 2, 62, 2)

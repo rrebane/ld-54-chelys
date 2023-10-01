@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtaxax47wrytn"]
+[gd_scene load_steps=7 format=3 uid="uid://dtaxax47wrytn"]
 
 [ext_resource type="Script" path="res://scenes/backpack.gd" id="1_6ncac"]
 [ext_resource type="PackedScene" uid="uid://blfwt68jqu2yb" path="res://scenes/inventory.tscn" id="1_i75je"]
 [ext_resource type="Texture2D" uid="uid://t5tvey18s7s0" path="res://assets/graphics/stash_bg.png" id="2_8qf5s"]
+[ext_resource type="PackedScene" uid="uid://bf5mngrbd1org" path="res://scenes/items/dagger.tscn" id="3_o6yc3"]
 [ext_resource type="PackedScene" uid="uid://b2ms23e7d2uun" path="res://scenes/item_small.tscn" id="4_0et2k"]
 [ext_resource type="PackedScene" uid="uid://bkda4avrdohdb" path="res://scenes/item_l_shaped.tscn" id="4_kmuga"]
 
@@ -11,6 +12,9 @@ script = ExtResource("1_6ncac")
 
 [node name="Inventory" parent="." instance=ExtResource("1_i75je")]
 position = Vector2(0, 0)
+
+[node name="item" parent="." instance=ExtResource("3_o6yc3")]
+position = Vector2(910, 320)
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(866, 17)

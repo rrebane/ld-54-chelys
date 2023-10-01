@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkda4avrdohdb"]
 
-[ext_resource type="Script" path="res://scenes/item_base.gd" id="1_liidi"]
+[ext_resource type="Script" path="res://scenes/items/item_base.gd" id="1_2utfh"]
 [ext_resource type="Texture2D" uid="uid://v2dv1vyy7j8i" path="res://assets/graphics/l_shaped_item.png" id="1_tswdo"]
 
 [node name="ItemLShaped" type="Area2D"]
-script = ExtResource("1_liidi")
+script = ExtResource("1_2utfh")
 
 [node name="LShapedItem" type="Sprite2D" parent="."]
 texture = ExtResource("1_tswdo")
