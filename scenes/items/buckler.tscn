@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://djh124xel8scf"]
+
+[ext_resource type="Script" path="res://scenes/items/item_base.gd" id="1_4qjk0"]
+[ext_resource type="Texture2D" uid="uid://dnc8nc16j84hq" path="res://assets/graphics/items/ITEMS_SHIELD1.png" id="2_n7lvw"]
+
+[node name="Item" type="Area2D"]
+script = ExtResource("1_4qjk0")
+defence = 2
+
+[node name="LShapedItem" type="Sprite2D" parent="."]
+position = Vector2(-38.435, -43.285)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_n7lvw")
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-38.435, -43.285)
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(180, 17.1, 180, 18.3, 197, 21.3, 197, 22.6, 220, 30.6, 220, 31.9, 247, 48.9, 247, 50.2, 268, 71.2, 268, 73.3, 283, 95.4, 283, 98.6, 294, 130.7, 294, 142, 295.1, 163, 293.7, 163, 288.7, 192, 287.4, 192, 280.4, 211, 279.3, 211, 267.2, 233, 265.8, 233, 233.8, 264, 231.6, 264, 198.5, 282, 194.3, 282, 162.2, 287, 151.9, 287, 122, 282.7, 122, 281.4, 89, 269.4, 89, 268.1, 64, 251.1, 64, 249.8, 39, 223.8, 39, 221.3, 19, 173.4, 19, 168, 18, 139, 19.5, 139, 28.4, 102, 29.7, 102, 43.7, 73, 45.2, 73, 81.2, 37, 83.5, 37, 104.5, 25, 108.7, 25, 126.7, 19, 131.7, 19, 145, 17.2, 145, 15.9)

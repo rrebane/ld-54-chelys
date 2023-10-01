@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var action_timeout = 0.1
+@export var cell_size = 80
 
 var stash = []
 
@@ -72,8 +73,8 @@ func _on_item_drop(_item):
 	
 func _follow_mouse_grid(item):
 	var new_position = get_global_mouse_position()
-	var x_mod = int(new_position.x) % 32
-	var y_mod = int(new_position.y) % 32
+	var x_mod = int(new_position.x) % cell_size + cell_size / 2
+	var y_mod = int(new_position.y) % cell_size + cell_size / 2
 	
 	new_position.x = int(new_position.x) - x_mod
 	new_position.y = int(new_position.y) - y_mod

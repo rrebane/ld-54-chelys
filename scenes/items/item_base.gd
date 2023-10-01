@@ -1,7 +1,8 @@
 extends Area2D
 
-@export var attack = 1
-@export var defence = 1
+@export var attack = 0
+@export var defence = 0
+@export var health = 0
 
 var original_position = null
 
@@ -17,12 +18,15 @@ func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if not _backpack.can_pick_up():
 			return
+			
 		original_position = global_position
-
 		_become_dragged()
 		EventsBus.item_picked_up.emit(self)
 
 func try_set():
+	if not _backpack.can_drop():
+		return
+
 	var areas = get_overlapping_areas()
 	var is_blocked = false
 	for area in areas:
