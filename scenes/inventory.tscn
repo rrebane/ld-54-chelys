@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://blfwt68jqu2yb"]
 
 [ext_resource type="Script" path="res://scenes/inventory.gd" id="1_1rivn"]
-[ext_resource type="Texture2D" uid="uid://b3clmnwy877ud" path="res://assets/graphics/inventory_grid.png" id="2_td70l"]
+[ext_resource type="Texture2D" uid="uid://dx6chali8vmrd" path="res://assets/graphics/new_grid (1).png" id="2_maate"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e5j4"]
 size = Vector2(580, 380)
@@ -12,7 +12,7 @@ script = ExtResource("1_1rivn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.243137, 0.243137, 0.243137, 0.87451)
-texture = ExtResource("2_td70l")
+texture = ExtResource("2_maate")
 
 [node name="ItemContainer" type="Node2D" parent="."]
 

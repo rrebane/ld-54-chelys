@@ -39,6 +39,7 @@ func inventory_attribute(attr_name):
 	return attribute
 
 func _physics_process(delta):
+	
 	_action_just_happened = false
 	
 	if _selected_item:
@@ -110,4 +111,7 @@ func _clear_item_info():
 	$CanvasLayer/Control/Label.text = "Choose the items for your journey!"
 	$CanvasLayer/Control/Label.text += "\nSelect an item to see its stats!"
 	$CanvasLayer/Control/Label.text += "\n\nPress SPACE to depart!"
-	
+
+func get_items_in_inventory():
+	return $Inventory.get_items_in_inventory()
+
