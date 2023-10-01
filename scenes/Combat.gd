@@ -6,7 +6,7 @@ enum State { PLAYER_TURN, ENEMY_TURN, COMBAT_END }
 @export var turn_time = 0.5
 
 @onready var _overlay = $CanvasLayer
-@onready var _overlay_label = $CanvasLayer/Label
+@onready var _overlay_label = $CanvasLayer/Control/TextureRect/MarginContainer/RichTextLabel
 
 var player_scene = preload("res://scenes/player.tscn")
 var enemy_scene = preload("res://scenes/enemies/enemy.tscn")
