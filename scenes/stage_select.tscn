@@ -1,8 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwmdxx3qnl4u5"]
+[gd_scene load_steps=8 format=3 uid="uid://bwmdxx3qnl4u5"]
 
 [ext_resource type="Script" path="res://scenes/stage_select.gd" id="1_p1yuq"]
 [ext_resource type="Theme" uid="uid://b1rse5hojok5d" path="res://assets/ui_themes/Default.tres" id="2_mdue7"]
-[ext_resource type="Texture2D" uid="uid://bja70pg8vo3li" path="res://assets/graphics/backgrounds/ScreenSelectBg.PNG" id="3_6m6hk"]
+[ext_resource type="Texture2D" uid="uid://b8bbn5w0t0pi1" path="res://assets/graphics/backgrounds/stage_select_bg.PNG" id="3_56qdi"]
+[ext_resource type="Texture2D" uid="uid://wc1e0an4i1ga" path="res://assets/graphics/backgrounds/stage_select_cross.PNG" id="4_ghdmq"]
+
+[sub_resource type="Animation" id="Animation_c1uwv"]
+resource_name = "hover"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect/TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="Animation" id="Animation_ulkn3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect/TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uoskc"]
+_data = {
+"RESET": SubResource("Animation_ulkn3"),
+"hover": SubResource("Animation_c1uwv")
+}
 
 [node name="StageSelect" type="Node2D"]
 script = ExtResource("1_p1yuq")
@@ -39,13 +77,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_6m6hk")
+texture = ExtResource("3_56qdi")
 
-[node name="DungeonButton" type="Control" parent="CanvasLayer/TextureRect"]
-anchors_preset = 0
-offset_left = 345.0
-offset_top = 205.0
-offset_right = 426.0
-offset_bottom = 286.0
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TextureRect"]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 191.0
+offset_right = 418.0
+offset_bottom = 283.0
+texture = ExtResource("4_ghdmq")
+expand_mode = 1
 
-[connection signal="gui_input" from="CanvasLayer/TextureRect/DungeonButton" to="." method="_on_dungeon_button_gui_input"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uoskc")
+}
+
+[connection signal="gui_input" from="CanvasLayer/TextureRect/TextureRect" to="." method="_on_dungeon_button_gui_input"]
+[connection signal="mouse_entered" from="CanvasLayer/TextureRect/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/TextureRect/TextureRect" to="." method="_on_texture_rect_mouse_exited"]

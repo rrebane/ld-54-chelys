@@ -19,3 +19,13 @@ func _on_dungeon_button_gui_input(event):
 			}
 		SceneSwitcher.goto_scene("res://scenes/dungeon.tscn", config)
 		pass # Replace with function body.
+
+
+func _on_texture_rect_mouse_entered():
+	$AnimationPlayer.play("hover")
+	pass # Replace with function body.
+
+
+func _on_texture_rect_mouse_exited():
+	$AnimationPlayer.stop()
+	pass # Replace with function body.
