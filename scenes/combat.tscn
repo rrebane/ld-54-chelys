@@ -1,9 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://cohqjtycmwerf"]
+[gd_scene load_steps=8 format=3 uid="uid://cohqjtycmwerf"]
 
 [ext_resource type="Script" path="res://scenes/Combat.gd" id="1_ckvl8"]
 [ext_resource type="Texture2D" uid="uid://c7ka76rmulboa" path="res://assets/graphics/BATTLE_SCREEN.png" id="2_17xfi"]
 [ext_resource type="Theme" uid="uid://b1rse5hojok5d" path="res://assets/ui_themes/Default.tres" id="2_d1563"]
+[ext_resource type="Texture2D" uid="uid://cosb5nb0d86b4" path="res://assets/graphics/boss1_scene.png" id="4_76m3f"]
 [ext_resource type="Texture2D" uid="uid://dk7wa3g4t0gnw" path="res://assets/graphics/BATTLE_SCREEN_GOATMAN_BACKROUND.png" id="4_qgnhw"]
+
+[sub_resource type="Animation" id="Animation_l16nj"]
+resource_name = "boss1_intro"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBossIntro:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(3, 3), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2DBossIntro:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1100, -500), Vector2(1100, 1600), Vector2(960, 540)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hc2rd"]
+_data = {
+"boss1_intro": SubResource("Animation_l16nj")
+}
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_ckvl8")
@@ -17,6 +51,12 @@ texture = ExtResource("2_17xfi")
 visible = false
 position = Vector2(960, 540)
 texture = ExtResource("4_qgnhw")
+
+[node name="Sprite2DBossIntro" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1100, -500)
+scale = Vector2(3, 3)
+texture = ExtResource("4_76m3f")
 
 [node name="PlayerPosition" type="Node2D" parent="."]
 position = Vector2(311, 683)
@@ -69,3 +109,8 @@ theme_override_constants/margin_bottom = 20
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect/MarginContainer"]
 layout_mode = 2
 scroll_following = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hc2rd")
+}

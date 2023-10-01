@@ -4,9 +4,9 @@ enum Phase { COMBAT, INVENTORY }
 
 @export var enemies = [
 	preload("res://scenes/enemies/enemy.tscn"),
-	#preload("res://scenes/enemies/enemy2.tscn"),
-	#preload("res://scenes/enemies/enemy3.tscn"),
-	#preload("res://scenes/enemies/enemy4.tscn"),
+	preload("res://scenes/enemies/enemy2.tscn"),
+	preload("res://scenes/enemies/enemy3.tscn"),
+	preload("res://scenes/enemies/enemy4.tscn"),
 	preload("res://scenes/enemies/boss1.tscn")
 ]
 
