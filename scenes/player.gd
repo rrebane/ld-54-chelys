@@ -27,6 +27,7 @@ func take_damage(damage):
 	var inventory_defence = _backpack.inventory_attribute("defence")
 	
 	if damage > 0:
+		_animation_player.play("take_damage")
 		var dmg = max(damage - base_defence - inventory_defence, 1)
 		print("You got hit for {damage} damage".format({"damage": dmg}))
 		_health -= dmg
@@ -34,6 +35,6 @@ func take_damage(damage):
 			die()
 
 func die():
-	# Exhausted animation?
+	_animation_player.play("die")
 	print("Player died")
 	EventsBus.player_death.emit()

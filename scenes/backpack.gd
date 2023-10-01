@@ -6,10 +6,10 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	if Input.is_action_just_pressed("debug_attack_stat"):
+	if GlobalState.debug and Input.is_action_just_pressed("debug_attack_stat"):
 		print(inventory_attribute("attack"))
 	
-	if Input.is_action_just_pressed("debug_defence_stat"):
+	if GlobalState.debug and Input.is_action_just_pressed("debug_defence_stat"):
 		print(inventory_attribute("defence"))
 	
 func config(params):

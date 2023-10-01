@@ -4,7 +4,9 @@ enum Phase { COMBAT, INVENTORY }
 
 @export var enemies = [
 	preload("res://scenes/enemies/enemy.tscn"),
-	preload("res://scenes/enemies/enemy.tscn"),
+	preload("res://scenes/enemies/enemy2.tscn"),
+	preload("res://scenes/enemies/enemy3.tscn"),
+	preload("res://scenes/enemies/enemy4.tscn"),
 	preload("res://scenes/enemies/boss1.tscn")
 ]
 
@@ -19,13 +21,10 @@ func _ready():
 func _process(delta):
 	match _current_phase:
 		Phase.INVENTORY:
-			if Input.is_action_just_pressed("debug_combat_phase"):
+			if GlobalState.debug and Input.is_action_just_pressed("debug_combat_phase"):
 				combat_phase()
 		_:
 			pass
-
-func config(params):
-	pass
 
 func combat_phase():
 	var combat = _combat_scene.instantiate()

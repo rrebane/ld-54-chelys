@@ -1,6 +1,6 @@
 extends Node2D
 
-enum Result { PLAYER_DEATH, ENEMY_DEATH }
+enum Result { PLAYER_WIN, PLAYER_LOSE }
 enum State { PLAYER_TURN, ENEMY_TURN, COMBAT_END }
 
 @export var turn_time = 0.5
@@ -31,10 +31,10 @@ func _ready():
 	_overlay.hide()
 
 func _process(delta):
-	if Input.is_action_just_pressed("debug_combat_win"):
-		combat_end(true)
-	if Input.is_action_just_pressed("debug_combat_lose"):
-		combat_end(false)
+	if GlobalState.debug and Input.is_action_just_pressed("debug_combat_win"):
+		_enemy_death(5)
+	if GlobalState.debug and Input.is_action_just_pressed("debug_combat_lose"):
+		_player_death()
 	
 	if _turn_time_left > 0:
 		_turn_time_left -= delta
@@ -55,16 +55,16 @@ func _process(delta):
 			
 			
 func _player_death():
-	_combat_result["winner"] = Result.ENEMY_DEATH
+	_combat_result["winner"] = Result.PLAYER_LOSE
 	_current_state = State.COMBAT_END
 	_overlay_label.text = "You were defeated!\n\nPress SPACE to return to main menu."
 	_overlay.show()
 	
-func _enemy_death(_gold_earned):
-	_combat_result["gold"] = _gold_earned
-	_combat_result["winner"] = Result.ENEMY_DEATH
+func _enemy_death(gold_earned, text = "You won!"):
+	_combat_result["gold"] = gold_earned
+	_combat_result["winner"] = Result.PLAYER_WIN
 	_current_state = State.COMBAT_END
-	_overlay_label.text = "You won!\n\nPress SPACE to continue.".format({"gold": _gold_earned})
+	_overlay_label.text = "{text} You earned {gold} gold.\n\nPress SPACE to continue.".format({"text": text, "gold": gold_earned})
 	_overlay.show()
 		
 func player_turn():
@@ -79,5 +79,5 @@ func combat_end(result):
 	if "gold" in result:
 		GlobalState.player_gold += result["gold"]
 		
-	var player_win = result["winner"] == Result.ENEMY_DEATH
+	var player_win = result["winner"] == Result.PLAYER_WIN
 	EventsBus.combat_end.emit(player_win)

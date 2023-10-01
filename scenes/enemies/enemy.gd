@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var display_name = "Enemy"
+@export var victory_text = ""
 @export var base_health = 10
 @export var base_attack = 5
 @export var base_defence = 0
@@ -27,6 +28,7 @@ func attack():
 
 func take_damage(damage):
 	if damage > 0:
+		_animation_player.play("take_damage")
 		var dmg = max(damage - _defence, 1)
 		print("{name} got hit for {damage} damage".format({"name": display_name, "damage": dmg}))
 		_health -= dmg
@@ -34,6 +36,9 @@ func take_damage(damage):
 			die()
 
 func die():
-	# TODO death animation
+	_animation_player.play("die")
 	print("Enemy died")
-	EventsBus.enemy_death.emit(_gold)
+	if len(victory_text) > 0:
+		EventsBus.enemy_death.emit(_gold, victory_text)
+	else:
+		EventsBus.enemy_death.emit(_gold)

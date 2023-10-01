@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy4wmoh0ntlkr"]
+[gd_scene load_steps=7 format=3 uid="uid://dy4wmoh0ntlkr"]
 
 [ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_2bhwk"]
-[ext_resource type="Texture2D" uid="uid://crw72f0ioffmc" path="res://assets/graphics/enemy2.png" id="2_rm21l"]
+[ext_resource type="Texture2D" uid="uid://bu6vtb2v0cmey" path="res://assets/graphics/inventory_bg.png" id="2_uwxnw"]
 
 [sub_resource type="Animation" id="Animation_2o0te"]
 resource_name = "enemy_attack"
@@ -19,14 +19,47 @@ tracks/0/keys = {
 "values": [Vector2(13, -208), Vector2(-12, -208), Vector2(13, -208)]
 }
 
+[sub_resource type="Animation" id="Animation_g7phn"]
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wngw8"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b23qb"]
 _data = {
-"enemy_attack": SubResource("Animation_2o0te")
+"die": SubResource("Animation_wngw8"),
+"enemy_attack": SubResource("Animation_2o0te"),
+"take_damage": SubResource("Animation_g7phn")
 }
 
 [node name="boss1" type="Node2D"]
 script = ExtResource("1_2bhwk")
 display_name = "Shopkeeper"
+victory_text = "You defeated the Shopkeeper!"
 base_health = 45
 base_attack = 10
 base_defence = 4
@@ -35,7 +68,7 @@ base_gold = 30
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(13, -208)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_rm21l")
+texture = ExtResource("2_uwxnw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
