@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://lp34cu5pjyah"]
+[gd_scene load_steps=16 format=3 uid="uid://lp34cu5pjyah"]
 
 [ext_resource type="Texture2D" uid="uid://bh2e0t8mekwh8" path="res://assets/start_screen/START_BACKROUND.png" id="1_tvmi2"]
 [ext_resource type="Texture2D" uid="uid://co1m0yvf28sia" path="res://assets/start_screen/START_GHOST.png" id="2_2mvfh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cdle70aaixekl" path="res://assets/start_screen/EXIT.png" id="7_4t0x5"]
 [ext_resource type="Texture2D" uid="uid://dfe73nfyr3fuq" path="res://assets/start_screen/OPTIONS.png" id="8_cbcg5"]
 [ext_resource type="Script" path="res://ui/OptionsButton.gd" id="8_kxhut"]
+[ext_resource type="Script" path="res://ui/TextureButton3.gd" id="10_eb2rf"]
 [ext_resource type="Texture2D" uid="uid://cv0j4sl5rgv7y" path="res://assets/start_screen/CREDIT.png" id="10_vsgud"]
 
 [sub_resource type="GDScript" id="GDScript_ewaxt"]
@@ -104,6 +105,7 @@ script = ExtResource("8_kxhut")
 [node name="TextureButton3" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("10_vsgud")
+script = ExtResource("10_eb2rf")
 
 [node name="TextureButton4" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
@@ -115,3 +117,5 @@ autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_polan")
 }
+
+[connection signal="pressed" from="VBoxContainer/TextureButton3" to="VBoxContainer/TextureButton3" method="_on_pressed"]
