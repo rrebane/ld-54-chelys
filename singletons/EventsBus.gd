@@ -12,3 +12,4 @@ signal player_death
 signal enemy_death
 
 signal item_picked_up(item)
+signal add_to_combat_log(text)

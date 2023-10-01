@@ -28,7 +28,9 @@ func _ready():
 	EventsBus.player_death.connect(_player_death)
 	EventsBus.enemy_death.connect(_enemy_death)
 	
-	_overlay.hide()
+	_overlay.show()
+	
+	EventsBus.add_to_combat_log.connect(_add_to_combat_log)
 
 func _process(delta):
 	if GlobalState.debug and Input.is_action_just_pressed("debug_combat_win"):
@@ -57,14 +59,14 @@ func _process(delta):
 func _player_death():
 	_combat_result["winner"] = Result.PLAYER_LOSE
 	_current_state = State.COMBAT_END
-	_overlay_label.text = "You were defeated!\n\nPress SPACE to return to main menu."
+	_add_to_combat_log("You were defeated!\n\nPress SPACE to return to main menu.")
 	_overlay.show()
 	
 func _enemy_death(gold_earned, text = "You won!"):
 	_combat_result["gold"] = gold_earned
 	_combat_result["winner"] = Result.PLAYER_WIN
 	_current_state = State.COMBAT_END
-	_overlay_label.text = "{text} You earned {gold} gold.\n\nPress SPACE to continue.".format({"text": text, "gold": gold_earned})
+	_add_to_combat_log("{text} You earned {gold} gold.\n\nPress SPACE to continue.".format({"text": text, "gold": gold_earned}))
 	_overlay.show()
 		
 func player_turn():
@@ -81,3 +83,8 @@ func combat_end(result):
 		
 	var player_win = result["winner"] == Result.PLAYER_WIN
 	EventsBus.combat_end.emit(player_win)
+
+func _add_to_combat_log(text):
+	_overlay_label.text += '\n'
+	_overlay_label.text += text
+	
