@@ -111,8 +111,8 @@ func show_backpack():
 func _update_info(item):
 	$CanvasLayer/Control/Label.text = ""
 	$CanvasLayer/Control/Label.text += 'attack: {attack}'.format({'attack': item.attack})
-	$CanvasLayer/Control/Label.text += '\n' + 'defence: {attack}'.format({'attack': item.attack})
-	$CanvasLayer/Control/Label.text += '\n' + 'health: {attack}'.format({'attack': item.attack})
+	$CanvasLayer/Control/Label.text += '\n' + 'defence: {defence}'.format({'defence': item.defence})
+	$CanvasLayer/Control/Label.text += '\n' + 'health: {health}'.format({'health': item.health})
 
 func _clear_item_info():
 	$CanvasLayer/Control/Label.text = "Choose the items for your journey!"
