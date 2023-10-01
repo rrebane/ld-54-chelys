@@ -6,4 +6,4 @@
 [node name="dungeon" type="Node2D"]
 script = ExtResource("1_1emcs")
 
-[node name="Backpack" parent="." instance=ExtResource("2_klegg")]
+[node name="Backpack" parent="." groups=["backpack"] instance=ExtResource("2_klegg")]

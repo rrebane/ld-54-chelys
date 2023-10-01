@@ -1,16 +1,23 @@
 extends Node2D
 
-enum State { PLAYER_TURN, ENEMY_TURN, FINISHED }
+enum Result { PLAYER_DEATH, ENEMY_DEATH }
+enum State { PLAYER_TURN, ENEMY_TURN, COMBAT_END }
 
-@export var turn_time = 1.0
+@export var turn_time = 0.5
+
+@onready var _overlay = $CanvasLayer
+@onready var _overlay_label = $CanvasLayer/Label
 
 var player_scene = preload("res://scenes/player.tscn")
 var enemy_scene = preload("res://scenes/enemies/enemy.tscn")
 
 var _current_state = State.PLAYER_TURN
+var _turn_time_left = 0
+
 var _player = null
 var _enemy = null
-var _turn_time_left = 0
+
+var _combat_result = {}
 
 func _ready():
 	_player = player_scene.instantiate()
@@ -20,6 +27,8 @@ func _ready():
 	
 	EventsBus.player_death.connect(_player_death)
 	EventsBus.enemy_death.connect(_enemy_death)
+	
+	_overlay.hide()
 
 func _process(delta):
 	if Input.is_action_just_pressed("debug_combat_win"):
@@ -33,23 +42,30 @@ func _process(delta):
 	
 	match _current_state:
 		State.PLAYER_TURN:
-			player_turn()
 			_current_state = State.ENEMY_TURN
 			_turn_time_left = turn_time
+			player_turn()
 		State.ENEMY_TURN:
-			enemy_turn()
 			_current_state = State.PLAYER_TURN
 			_turn_time_left = turn_time
-		_:
-			pass
+			enemy_turn()
+		State.COMBAT_END:
+			if Input.is_action_just_pressed("continue"):
+				combat_end(_combat_result)
+			
 			
 func _player_death():
-	_current_state = State.FINISHED
-	combat_end(false)
+	_combat_result["winner"] = Result.ENEMY_DEATH
+	_current_state = State.COMBAT_END
+	_overlay_label.text = "You were defeated!\n\nPress SPACE to return to main menu."
+	_overlay.show()
 	
-func _enemy_death():
-	_current_state = State.FINISHED
-	combat_end(true)
+func _enemy_death(_gold_earned):
+	_combat_result["gold"] = _gold_earned
+	_combat_result["winner"] = Result.ENEMY_DEATH
+	_current_state = State.COMBAT_END
+	_overlay_label.text = "You won!\n\nPress SPACE to continue.".format({"gold": _gold_earned})
+	_overlay.show()
 		
 func player_turn():
 	var damage = _player.attack()
@@ -59,6 +75,9 @@ func enemy_turn():
 	var damage = _enemy.attack()
 	_player.take_damage(damage)
 
-func combat_end(win):
-	# TODO results
-	EventsBus.combat_end.emit(win)
+func combat_end(result):
+	if "gold" in result:
+		GlobalState.player_gold += result["gold"]
+		
+	var player_win = result["winner"] == Result.ENEMY_DEATH
+	EventsBus.combat_end.emit(player_win)

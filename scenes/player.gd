@@ -8,33 +8,32 @@ extends Node2D
 
 @onready var _animation_player = $AnimationPlayer
 
-var _inventory = null
+var _backpack = null
 
 signal player_death
 
 func _ready():
-	pass
+	_backpack = get_tree().get_nodes_in_group("backpack")[0]
 
 func _process(delta):
 	pass
 	
 func attack():
-	# TODO get defence from inventory
 	_animation_player.play("player_attack")
-	var inventory_attack = 0
-	return inventory_attack
+	var inventory_attack = _backpack.inventory_attribute("attack")
+	return base_attack + inventory_attack
 
 func take_damage(damage):
-	# TODO get defence from inventory
-	var inventory_defence = 0
+	var inventory_defence = _backpack.inventory_attribute("defence")
 	
 	if damage > 0:
-		var dmg = max(damage - inventory_defence, 1)
+		var dmg = max(damage - base_defence - inventory_defence, 1)
 		print("You got hit for {damage} damage".format({"damage": dmg}))
 		_health -= dmg
 		if _health <= 0:
 			die()
 
 func die():
+	# Exhausted animation?
 	print("Player died")
 	EventsBus.player_death.emit()

@@ -4,12 +4,12 @@ extends Node2D
 @export var base_health = 10
 @export var base_attack = 5
 @export var base_defence = 0
-@export var base_experience = 5
+@export var base_gold = 5
 
 @onready var _health = base_health
 @onready var _attack = base_attack
 @onready var _defence = base_defence
-@onready var _experience = base_experience
+@onready var _gold = base_gold
 
 @onready var _animation_player = $AnimationPlayer
 
@@ -34,5 +34,6 @@ func take_damage(damage):
 			die()
 
 func die():
+	# TODO death animation
 	print("Enemy died")
-	EventsBus.enemy_death.emit(_experience)
+	EventsBus.enemy_death.emit(_gold)
