@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvpmqyjqtukbm"]
+
+[ext_resource type="Script" path="res://scenes/items/item_base.gd" id="1_7e1pm"]
+[ext_resource type="Texture2D" uid="uid://dc0lcntifqpdv" path="res://assets/graphics/items/ITEMS_SHURIKEN.png" id="2_bm6cy"]
+
+[node name="Item" type="Area2D"]
+script = ExtResource("1_7e1pm")
+attack = 2
+
+[node name="LShapedItem" type="Sprite2D" parent="."]
+position = Vector2(-24, -23)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_bm6cy")
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-24, -23)
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(76, 4.8, 76, 30.2, 75.3, 34.5, 92, 54.3, 92, 58.8, 88.8, 62, 62.9, 62, 51, 72.9, 51, 75.5, 48.2, 81, 46.6, 81, 39.2, 86.3, 37, 85.2, 37, 83.3, 29.6, 61, 11, 51.2, 11, 49.8, 4.6, 43.5, 5.7, 41, 7.6, 41, 26, 32.7, 21.7, 27.3, 22.7, 25, 23.9, 25, 25.9, 22, 28.1, 22, 33, 22.7, 41.7, 4, 46.3, 4, 52.4, 18.8, 68, 4.1, 68, 0.8)

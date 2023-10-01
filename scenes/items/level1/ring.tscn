@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo1iayekhaxbp"]
+
+[ext_resource type="Script" path="res://scenes/items/item_base.gd" id="1_ugg8b"]
+[ext_resource type="Texture2D" uid="uid://dvytyjv8siu0u" path="res://assets/graphics/items/ITEMS_RING.png" id="2_yokae"]
+
+[node name="Item" type="Area2D"]
+script = ExtResource("1_ugg8b")
+defence = 1
+health = 3
+
+[node name="LShapedItem" type="Sprite2D" parent="."]
+position = Vector2(-36, -30)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_yokae")
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-36, -30)
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(62, 7.2, 62, 8.5, 78, 13.5, 78, 14.9, 99, 26.8, 99, 28.1, 130, 57.1, 130, 61, 134.3, 89, 131.9, 89, 123.9, 98, 120.7, 98, 116.7, 101, 105, 101, 105, 99.8, 77, 95.7, 77, 94.5, 40, 84.5, 40, 82.7, 29, 69, 27.2, 69, 17, 59.9, 17, 56.6, 9, 44.6, 9, 26.5, 15.8, 14, 17.3, 14, 28, 6, 28, 3.8)

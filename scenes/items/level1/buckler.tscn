@@ -1,16 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://djh124xel8scf"]
 
-[ext_resource type="Script" path="res://scenes/items/item_base.gd" id="1_4qjk0"]
-[ext_resource type="Texture2D" uid="uid://dnc8nc16j84hq" path="res://assets/graphics/items/ITEMS_SHIELD1.png" id="2_n7lvw"]
+[ext_resource type="Script" path="res://scenes/items/item_base.gd" id="1_xeryx"]
+[ext_resource type="Texture2D" uid="uid://dnc8nc16j84hq" path="res://assets/graphics/items/ITEMS_SHIELD1.png" id="2_bx7b6"]
 
 [node name="Item" type="Area2D"]
-script = ExtResource("1_4qjk0")
+script = ExtResource("1_xeryx")
 defence = 2
 
 [node name="LShapedItem" type="Sprite2D" parent="."]
 position = Vector2(-38.435, -43.285)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_n7lvw")
+texture = ExtResource("2_bx7b6")
 centered = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

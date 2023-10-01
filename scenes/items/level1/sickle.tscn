@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://r4m3uhr1mhgi"]
+
+[ext_resource type="Script" path="res://scenes/items/item_base.gd" id="1_w01ia"]
+[ext_resource type="Texture2D" uid="uid://dnmn2to666n44" path="res://assets/graphics/items/ITEMS_SICKLE.png" id="2_iq1jn"]
+
+[node name="Item" type="Area2D"]
+script = ExtResource("1_w01ia")
+attack = 1
+defence = 1
+
+[node name="LShapedItem" type="Sprite2D" parent="."]
+position = Vector2(-38, -35)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_iq1jn")
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-38, -35)
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(90, 8.2, 90, 9.5, 101, 12.5, 101, 14, 118, 26, 118, 28.6, 130, 54.6, 130, 60, 132.3, 78, 130.9, 78, 129.9, 91, 128.1, 91, 118.1, 107, 115.7, 107, 98.7, 121, 94.3, 121, 82, 122.8, 85, 131.7, 85, 154, 83.7, 154, 76, 192.4, 79.3, 198, 78.2, 200, 77.1, 200, 69.2, 214, 65.2, 214, 62, 210.8, 62, 207.9, 55, 201.9, 55, 196, 47, 145.2, 47, 132.8, 48.4, 127, 49.9, 127, 57, 116.4, 57, 94, 59.7, 94, 88, 89.3, 101, 74.3, 101, 71.4, 104, 66.5, 104, 51, 98.6, 37, 97.5, 37, 82.5, 29, 68.2, 29, 45, 31.8, 45, 32.4, 33, 36.4, 33, 37, 20.7, 46, 17.2, 46, 14, 42.8, 14, 39.1, 38.2, 16, 40.3, 16, 51.3, 8, 54.8, 8, 61, 7.2, 61, 5.8)

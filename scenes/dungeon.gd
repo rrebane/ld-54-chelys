@@ -23,7 +23,7 @@ func _process(delta):
 		Phase.INVENTORY:
 			if GlobalState.debug and Input.is_action_just_pressed("debug_combat_phase"):
 				combat_phase()
-		_:
+		Phase.COMBAT:
 			pass
 
 func combat_phase():

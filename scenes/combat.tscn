@@ -13,10 +13,10 @@ scale = Vector2(2.04726, 2.04726)
 texture = ExtResource("3_desjg")
 
 [node name="PlayerPosition" type="Node2D" parent="."]
-position = Vector2(287, 673)
+position = Vector2(311, 683)
 
 [node name="EnemyPosition" type="Node2D" parent="."]
-position = Vector2(1590, 667)
+position = Vector2(1589, 662)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b7nax4umv5mjc"]
 
 [ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_vyh2h"]
-[ext_resource type="Texture2D" uid="uid://bnebwghvi8dwp" path="res://assets/graphics/enemy1.png" id="2_fy3y2"]
+[ext_resource type="Texture2D" uid="uid://crw72f0ioffmc" path="res://assets/graphics/enemy2.png" id="2_wqwgo"]
 
 [sub_resource type="Animation" id="Animation_wngw8"]
 length = 0.5
@@ -66,7 +66,7 @@ base_gold = 10
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(13, -208)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_fy3y2")
+texture = ExtResource("2_wqwgo")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

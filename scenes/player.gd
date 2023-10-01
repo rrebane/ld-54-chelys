@@ -14,6 +14,8 @@ signal player_death
 
 func _ready():
 	_backpack = get_tree().get_nodes_in_group("backpack")[0]
+	var inventory_health = _backpack.inventory_attribute("health")
+	_health = base_health + inventory_health
 
 func _process(delta):
 	pass

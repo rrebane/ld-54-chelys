@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwufxavibpgw4"]
+
+[ext_resource type="Script" path="res://scenes/items/item_base.gd" id="1_2ctqe"]
+[ext_resource type="Texture2D" uid="uid://v7e7yt3b58y0" path="res://assets/graphics/items/ITEMS_BELT.png" id="2_giay0"]
+
+[node name="Item" type="Area2D"]
+script = ExtResource("1_2ctqe")
+defence = 2
+health = 3
+
+[node name="LShapedItem" type="Sprite2D" parent="."]
+position = Vector2(-40, -22)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_giay0")
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-40, -22)
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(109, 14, 109, 15.2, 134, 18.2, 134, 19.9, 137, 21.9, 137, 25.2, 136.5, 28, 147, 36, 147, 38.7, 150.7, 51, 148.2, 51, 143.2, 60, 140.5, 60, 135.6, 63, 128.4, 63, 106.2, 67, 71.8, 67, 29, 59.7, 29, 58.1, 13, 49.2, 13, 45.9, 14.1, 28, 16.2, 28, 27.2, 18, 30.7, 18, 53, 14.3, 53, 13)
