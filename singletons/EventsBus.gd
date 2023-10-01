@@ -10,3 +10,5 @@ signal combat_end
 signal dungeon_end
 signal player_death
 signal enemy_death
+
+signal item_picked_up(item)

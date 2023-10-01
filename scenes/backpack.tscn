@@ -19,10 +19,10 @@ position = Vector2(866, 17)
 position = Vector2(0, 79)
 texture = ExtResource("2_8qf5s")
 
-[node name="ItemLShaped" parent="Node2D/StashBg" instance=ExtResource("4_kmuga")]
-position = Vector2(-68, -45)
-
 [node name="ItemSmall2" parent="Node2D/StashBg" instance=ExtResource("4_0et2k")]
-position = Vector2(30, -50)
+position = Vector2(40, 52)
 
 [node name="ItemSmall" parent="Node2D/StashBg" instance=ExtResource("4_0et2k")]
+
+[node name="ItemLShaped" parent="Node2D/StashBg" instance=ExtResource("4_kmuga")]
+position = Vector2(-68, -45)
