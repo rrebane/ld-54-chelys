@@ -1,23 +1,24 @@
 [gd_scene load_steps=7 format=3 uid="uid://blfwt68jqu2yb"]
 
 [ext_resource type="Script" path="res://scenes/inventory.gd" id="1_1rivn"]
-[ext_resource type="Texture2D" uid="uid://dx6chali8vmrd" path="res://assets/graphics/new_grid (1).png" id="2_maate"]
+[ext_resource type="Texture2D" uid="uid://cvqmeg3dkha4t" path="res://assets/graphics/inventory_one_cell.png" id="2_gklk8"]
 [ext_resource type="Script" path="res://scripts/FSM/StateMachine.gd" id="3_yrv61"]
 [ext_resource type="Script" path="res://scripts/inventory_states/idle.gd" id="4_kgefa"]
 [ext_resource type="Script" path="res://scripts/inventory_states/item_being_dragged.gd" id="5_nngo8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e5j4"]
-size = Vector2(500, 400)
+size = Vector2(400, 400)
 
 [node name="Inventory" type="Node2D"]
-position = Vector2(321, 289)
 script = ExtResource("1_1rivn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.243137, 0.243137, 0.243137, 0.87451)
-texture = ExtResource("2_maate")
-
 [node name="ItemContainer" type="Node2D" parent="."]
+
+[node name="InventoryBackGround" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("2_gklk8")
+region_enabled = true
+region_rect = Rect2(0, 0, 400, 400)
 
 [node name="Area2D" type="Area2D" parent="." groups=["inventory"]]
 
