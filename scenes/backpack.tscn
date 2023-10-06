@@ -44,24 +44,28 @@ centered = false
 
 [node name="Inventory" parent="." instance=ExtResource("1_i75je")]
 position = Vector2(472, 806)
+items_container_path = NodePath("../items")
 
-[node name="Buckler" parent="." instance=ExtResource("3_5fxaq")]
-position = Vector2(283, 683)
+[node name="items" type="Node2D" parent="."]
+position = Vector2(472, 806)
 
-[node name="Item" parent="." instance=ExtResource("3_o6yc3")]
-position = Vector2(547, 674)
+[node name="Buckler" parent="items" instance=ExtResource("3_5fxaq")]
+position = Vector2(-189, -123)
 
-[node name="Item2" parent="." instance=ExtResource("5_svse6")]
-position = Vector2(1366, 738)
+[node name="Item" parent="items" instance=ExtResource("3_o6yc3")]
+position = Vector2(75, -132)
 
-[node name="Item3" parent="." instance=ExtResource("8_0w2f0")]
-position = Vector2(1158, 715)
+[node name="Item2" parent="items" instance=ExtResource("5_svse6")]
+position = Vector2(894, -68)
 
-[node name="Item4" parent="." instance=ExtResource("9_537sr")]
-position = Vector2(1243, 526)
+[node name="Item3" parent="items" instance=ExtResource("8_0w2f0")]
+position = Vector2(686, -91)
 
-[node name="Item5" parent="." instance=ExtResource("10_abjxe")]
-position = Vector2(258, 855)
+[node name="Item4" parent="items" instance=ExtResource("9_537sr")]
+position = Vector2(771, -280)
 
-[node name="Item6" parent="." instance=ExtResource("11_5lvwx")]
-position = Vector2(396, 859)
+[node name="Item5" parent="items" instance=ExtResource("10_abjxe")]
+position = Vector2(-214, 49)
+
+[node name="Item6" parent="items" instance=ExtResource("11_5lvwx")]
+position = Vector2(-76, 53)
