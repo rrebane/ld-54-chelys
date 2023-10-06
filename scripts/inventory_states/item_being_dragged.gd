@@ -1,6 +1,6 @@
 extends State
 
-const _cell_size = 80
+const _cell_size = 50
 
 var _selected_item
 

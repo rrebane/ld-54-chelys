@@ -1,16 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtaxax47wrytn"]
+[gd_scene load_steps=9 format=3 uid="uid://dtaxax47wrytn"]
 
 [ext_resource type="Script" path="res://scenes/backpack.gd" id="1_6ncac"]
 [ext_resource type="PackedScene" uid="uid://blfwt68jqu2yb" path="res://scenes/inventory.tscn" id="1_i75je"]
 [ext_resource type="Theme" uid="uid://b1rse5hojok5d" path="res://assets/ui_themes/Default.tres" id="2_qkk71"]
-[ext_resource type="PackedScene" uid="uid://djh124xel8scf" path="res://scenes/items/level1/buckler.tscn" id="3_5fxaq"]
 [ext_resource type="Texture2D" uid="uid://b7qm3ljtiqped" path="res://assets/graphics/backgrounds/BACKPACK.png" id="3_fodg7"]
-[ext_resource type="PackedScene" uid="uid://bf5mngrbd1org" path="res://scenes/items/level1/dagger.tscn" id="3_o6yc3"]
-[ext_resource type="PackedScene" uid="uid://cmylrn7isih2q" path="res://scenes/items/level1/health_potion_small.tscn" id="5_svse6"]
-[ext_resource type="PackedScene" uid="uid://dqm8rofgb0v37" path="res://scenes/items/level1/gloves.tscn" id="8_0w2f0"]
-[ext_resource type="PackedScene" uid="uid://r4m3uhr1mhgi" path="res://scenes/items/level1/sickle.tscn" id="9_537sr"]
-[ext_resource type="PackedScene" uid="uid://bwufxavibpgw4" path="res://scenes/items/level1/belt.tscn" id="10_abjxe"]
-[ext_resource type="PackedScene" uid="uid://dvpmqyjqtukbm" path="res://scenes/items/level1/shuriken.tscn" id="11_5lvwx"]
+[ext_resource type="PackedScene" uid="uid://busrqs1kmw2r0" path="res://scenes/items_v2/level1/gloves.tscn" id="5_tpc55"]
+[ext_resource type="PackedScene" uid="uid://bwcfrhdlkbmsn" path="res://scenes/items_v2/level1/potion_1.tscn" id="6_efoix"]
+[ext_resource type="PackedScene" uid="uid://cxf2eaipf38nr" path="res://scenes/items_v2/level1/shield.tscn" id="7_o2onh"]
+[ext_resource type="PackedScene" uid="uid://cyfyl77kecqol" path="res://scenes/items_v2/level1/sickle.tscn" id="8_wc5u0"]
 
 [node name="Backpack" type="Node2D"]
 script = ExtResource("1_6ncac")
@@ -49,23 +46,14 @@ items_container_path = NodePath("../items")
 [node name="items" type="Node2D" parent="."]
 position = Vector2(472, 806)
 
-[node name="Buckler" parent="items" instance=ExtResource("3_5fxaq")]
-position = Vector2(-189, -123)
+[node name="gloves" parent="items" instance=ExtResource("5_tpc55")]
+position = Vector2(715, 67)
 
-[node name="Item" parent="items" instance=ExtResource("3_o6yc3")]
-position = Vector2(75, -132)
+[node name="potion1" parent="items" instance=ExtResource("6_efoix")]
+position = Vector2(638, -336)
 
-[node name="Item2" parent="items" instance=ExtResource("5_svse6")]
-position = Vector2(894, -68)
+[node name="ItemBaseScene" parent="items" instance=ExtResource("7_o2onh")]
+position = Vector2(627, -158)
 
-[node name="Item3" parent="items" instance=ExtResource("8_0w2f0")]
-position = Vector2(686, -91)
-
-[node name="Item4" parent="items" instance=ExtResource("9_537sr")]
-position = Vector2(771, -280)
-
-[node name="Item5" parent="items" instance=ExtResource("10_abjxe")]
-position = Vector2(-214, 49)
-
-[node name="Item6" parent="items" instance=ExtResource("11_5lvwx")]
-position = Vector2(-76, 53)
+[node name="sickle" parent="items" instance=ExtResource("8_wc5u0")]
+position = Vector2(940, -286)

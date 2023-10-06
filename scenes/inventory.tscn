@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/inventory_states/item_being_dragged.gd" id="5_nngo8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e5j4"]
-size = Vector2(580, 380)
+size = Vector2(500, 400)
 
 [node name="Inventory" type="Node2D"]
 position = Vector2(321, 289)
