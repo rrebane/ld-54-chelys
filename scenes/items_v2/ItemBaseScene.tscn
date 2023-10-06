@@ -4,4 +4,7 @@
 
 [node name="ItemBaseScene" type="Area2D"]
 script = ExtResource("1_rjxu4")
+item_name = "Item"
 run = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
