@@ -18,6 +18,9 @@ const TILE_SIZE = 50
 var original_position = null
 var _backpack = null
 
+func _ready():
+	add_to_group('item')
+
 func sprite_was_clicked(event):
 	return $Sprite2D.get_rect().has_point($Sprite2D.to_local(event.position))
 	
