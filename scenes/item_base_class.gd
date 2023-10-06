@@ -26,6 +26,10 @@ func _create_collision_shape(_bool):
 	if not sprite:
 		print("No sprite found on item: " + item_name)
 		return
+	
+	# Also turn off centered just in case
+	sprite.centered = false
+	
 	var size = sprite.texture.get_size()
 	var width_in_tiles = ceil(size.x / TILE_SIZE)
 	var height_in_tiles = ceil(size.y / TILE_SIZE)
