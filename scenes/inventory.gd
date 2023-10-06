@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var item_scene_path = preload("res://scenes/item.tscn")
-@onready var item_placement_indicator = $ItemPlacementIndicator
+@onready var item_placement_indicator = $InventoryBackGround/ItemPlacementIndicator
 
 @export var items_container_path := NodePath()
 
