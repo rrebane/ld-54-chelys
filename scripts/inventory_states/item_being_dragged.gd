@@ -29,12 +29,9 @@ func update(delta: float) -> void:
 	)
 	
 	_selected_item.global_position = new_position + parent_offset
-	if owner.item_on_inventory:
-		owner.item_placement_indicator.global_position = new_position + parent_offset 
 
 func handle_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and _selected_item:
-		if owner.item_on_inventory:
-			owner.item_on_inventory = false
+		owner.item_placeholder_state_machine.transition_to('Hidden')
 		state_machine.transition_to("Idle")
 		

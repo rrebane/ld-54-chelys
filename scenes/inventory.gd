@@ -2,8 +2,11 @@ extends Node2D
 
 @onready var item_scene_path = preload("res://scenes/item.tscn")
 @onready var item_placement_indicator = $InventoryBackGround/ItemPlacementIndicator
+@onready var inventory_area = $Area2D
+@onready var item_placeholder_state_machine = $ItemPlaceholderStateMachine
 
 @export var items_container_path := NodePath()
+
 
 var item_on_inventory = false : 
 	set (value):
@@ -34,16 +37,3 @@ func get_clicked_item(event):
 	if selected_item:
 		return selected_item
 
-
-
-func _on_area_2d_area_entered(area):
-	if area.is_in_group('item'):
-		item_on_inventory = true
-		var size = area.get_size()
-		item_placement_indicator.region_rect = Rect2(Vector2.ZERO, size)
-	pass # Replace with function body.
-
-
-func _on_area_2d_area_exited(area):
-	item_on_inventory = false
-	pass # Replace with function body.

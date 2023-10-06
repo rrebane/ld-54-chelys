@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://blfwt68jqu2yb"]
+[gd_scene load_steps=11 format=3 uid="uid://blfwt68jqu2yb"]
 
 [ext_resource type="Script" path="res://scenes/inventory.gd" id="1_1rivn"]
 [ext_resource type="Texture2D" uid="uid://cvqmeg3dkha4t" path="res://assets/graphics/inventory_one_cell.png" id="2_gklk8"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://scripts/FSM/StateMachine.gd" id="3_yrv61"]
 [ext_resource type="Script" path="res://scripts/inventory_states/idle.gd" id="4_kgefa"]
 [ext_resource type="Script" path="res://scripts/inventory_states/item_being_dragged.gd" id="5_nngo8"]
+[ext_resource type="Script" path="res://scripts/placeholder_states/PlaceholderStateMachine.gd" id="7_rwfj0"]
+[ext_resource type="Script" path="res://scripts/placeholder_states/Shown.gd" id="8_mx5gi"]
+[ext_resource type="Script" path="res://scripts/placeholder_states/Hidden.gd" id="9_fdnef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e5j4"]
 size = Vector2(400, 400)
@@ -47,5 +50,12 @@ script = ExtResource("4_kgefa")
 [node name="ItemBeingDragged" type="Node" parent="StateMachine"]
 script = ExtResource("5_nngo8")
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[node name="ItemPlaceholderStateMachine" type="Node" parent="."]
+script = ExtResource("7_rwfj0")
+initial_state = NodePath("Hidden")
+
+[node name="Shown" type="Node" parent="ItemPlaceholderStateMachine"]
+script = ExtResource("8_mx5gi")
+
+[node name="Hidden" type="Node" parent="ItemPlaceholderStateMachine"]
+script = ExtResource("9_fdnef")
