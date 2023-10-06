@@ -32,6 +32,7 @@ func update(delta: float) -> void:
 
 func handle_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and _selected_item:
-		owner.item_placeholder_state_machine.transition_to('Hidden')
-		state_machine.transition_to("Idle")
+		if not _selected_item.is_colliding_with_items(): 
+			owner.item_placeholder_state_machine.transition_to('Hidden')
+			state_machine.transition_to("Idle")
 		

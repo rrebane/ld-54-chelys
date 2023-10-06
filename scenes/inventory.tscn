@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://blfwt68jqu2yb"]
+[gd_scene load_steps=12 format=3 uid="uid://blfwt68jqu2yb"]
 
 [ext_resource type="Script" path="res://scenes/inventory.gd" id="1_1rivn"]
 [ext_resource type="Texture2D" uid="uid://cvqmeg3dkha4t" path="res://assets/graphics/inventory_one_cell.png" id="2_gklk8"]
 [ext_resource type="Texture2D" uid="uid://dhxummqogw2jy" path="res://assets/graphics/inventory_one_cell_white.png" id="3_ssveb"]
 [ext_resource type="Script" path="res://scripts/FSM/StateMachine.gd" id="3_yrv61"]
+[ext_resource type="Script" path="res://scenes/ItemPlacementIndicator.gd" id="4_5j77l"]
 [ext_resource type="Script" path="res://scripts/inventory_states/idle.gd" id="4_kgefa"]
 [ext_resource type="Script" path="res://scripts/inventory_states/item_being_dragged.gd" id="5_nngo8"]
 [ext_resource type="Script" path="res://scripts/placeholder_states/PlaceholderStateMachine.gd" id="7_rwfj0"]
@@ -27,13 +28,15 @@ region_enabled = true
 region_rect = Rect2(0, 0, 800, 800)
 
 [node name="ItemPlacementIndicator" type="Sprite2D" parent="InventoryBackGround"]
-self_modulate = Color(0.0352941, 1, 0.117647, 0.733333)
 texture_repeat = 2
 scale = Vector2(2, 2)
 texture = ExtResource("3_ssveb")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 300, 200)
+script = ExtResource("4_5j77l")
+positive_color = Color(0, 0.690196, 0, 1)
+negative_color = Color(0.627451, 0.105882, 0.0784314, 1)
 
 [node name="Area2D" type="Area2D" parent="." groups=["inventory"]]
 

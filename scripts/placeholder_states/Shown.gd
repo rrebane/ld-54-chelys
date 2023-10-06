@@ -1,18 +1,26 @@
 extends State
 
 var _current_item = null
+var _item_prev_position
 
 func enter(msg := {}) -> void:
 	if msg.has('item'):
 		_current_item = msg['item']
 		owner.inventory_area.area_exited.connect(_on_area_2d_area_exited)
-		var size = msg['item'].get_size()
+		var size = _current_item.get_size()
 		owner.item_placement_indicator.region_rect = Rect2(Vector2.ZERO, size)
+		_item_prev_position = _current_item.global_position
 	pass
 
 func update(_delta: float) -> void:
 	if _current_item:
-		owner.item_placement_indicator.global_position = _current_item.global_position
+		var global_pos = _current_item.global_position
+		owner.item_placement_indicator.global_position = global_pos
+		if _item_prev_position != global_pos:
+			if _current_item.is_colliding_with_items():
+				owner.item_placement_indicator.change_to_negative_color()
+			else:
+				owner.item_placement_indicator.change_to_positive_color()
 
 
 func exit() -> void:

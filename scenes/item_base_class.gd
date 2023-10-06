@@ -57,3 +57,10 @@ func get_size():
 	var height_in_tiles = ceil(size.y / TILE_SIZE)
 	return Vector2(width_in_tiles * TILE_SIZE, height_in_tiles * TILE_SIZE)
 	
+func is_colliding_with_items():
+	var areas = get_overlapping_areas()
+	var is_colliding = false
+	for area in areas:
+		if area.is_in_group('item'):
+			is_colliding = true
+	return is_colliding
