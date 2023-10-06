@@ -49,3 +49,9 @@ func _create_collision_shape(_bool):
 	]
 	collision_polygon.polygon = polygon_points
 
+func get_size():
+	var size = $Sprite2D.texture.get_size()
+	var width_in_tiles = ceil(size.x / TILE_SIZE)
+	var height_in_tiles = ceil(size.y / TILE_SIZE)
+	return Vector2(width_in_tiles * TILE_SIZE, height_in_tiles * TILE_SIZE)
+	
