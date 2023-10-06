@@ -40,7 +40,7 @@ texture = ExtResource("3_fodg7")
 centered = false
 
 [node name="Inventory" parent="." instance=ExtResource("1_i75je")]
-position = Vector2(472, 806)
+position = Vector2(472, 800)
 items_container_path = NodePath("../items")
 
 [node name="items" type="Node2D" parent="."]
