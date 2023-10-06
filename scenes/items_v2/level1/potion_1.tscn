@@ -5,9 +5,9 @@
 
 [node name="potion1" instance=ExtResource("1_ywg5h")]
 
-[node name="@CollisionPolygon2D@112623" type="CollisionPolygon2D" parent="." index="0"]
-polygon = PackedVector2Array(0, 0, 0, 100, 100, 100, 100, 0)
-
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_gi0av")
 centered = false
+
+[node name="@CollisionPolygon2D@97590" type="CollisionPolygon2D" parent="." index="1"]
+polygon = PackedVector2Array(2, 2, 2, 98, 98, 98, 98, 2)

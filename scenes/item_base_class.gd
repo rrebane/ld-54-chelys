@@ -2,6 +2,8 @@
 extends Area2D
 
 const TILE_SIZE = 50
+const OFFSET = 2
+const OFFSET_VECTOR = Vector2(OFFSET,OFFSET)
 
 @export var attack = 0
 @export var defence = 0
@@ -42,10 +44,10 @@ func _create_collision_shape(_bool):
 	collision_polygon.set_owner(self)
 	
 	var polygon_points = [
-		Vector2.ZERO,
-		Vector2(0, TILE_SIZE * height_in_tiles),
-		Vector2(TILE_SIZE * width_in_tiles, TILE_SIZE * height_in_tiles),
-		Vector2(TILE_SIZE * width_in_tiles, 0),
+		Vector2.ZERO + OFFSET_VECTOR,
+		Vector2(0 + OFFSET, TILE_SIZE * height_in_tiles - OFFSET),
+		Vector2(TILE_SIZE * width_in_tiles - OFFSET, TILE_SIZE * height_in_tiles - OFFSET),
+		Vector2(TILE_SIZE * width_in_tiles - OFFSET, 0 + OFFSET),
 	]
 	collision_polygon.polygon = polygon_points
 

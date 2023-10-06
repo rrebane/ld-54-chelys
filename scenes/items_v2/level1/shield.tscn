@@ -12,5 +12,5 @@ run = true
 texture = ExtResource("2_cscqv")
 centered = false
 
-[node name="@CollisionPolygon2D@101491" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(0, 0, 0, 150, 100, 150, 100, 0)
+[node name="@CollisionPolygon2D@101661" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(2, 2, 2, 148, 98, 148, 98, 2)
