@@ -17,7 +17,9 @@ func update(_delta: float) -> void:
 		var global_pos = _current_item.global_position
 		owner.item_placement_indicator.global_position = global_pos
 		if _item_prev_position != global_pos:
-			if _current_item.is_colliding_with_items():
+			var collision = _current_item.is_colliding_with_items()
+			var is_colliding = collision[0]
+			if is_colliding:
 				owner.item_placement_indicator.change_to_negative_color()
 			else:
 				owner.item_placement_indicator.change_to_positive_color()
@@ -25,6 +27,7 @@ func update(_delta: float) -> void:
 
 func exit() -> void:
 	_current_item = null
+	owner.inventory_area.area_exited.disconnect(_on_area_2d_area_exited)
 	owner.item_placement_indicator.region_rect = Rect2(Vector2.ZERO, Vector2.ZERO)
 	pass
 
