@@ -4,6 +4,8 @@ extends Node2D
 @onready var item_placement_indicator = $InventoryBackGround/ItemPlacementIndicator
 @onready var inventory_area = $Area2D
 @onready var item_placeholder_state_machine = $ItemPlaceholderStateMachine
+@onready var inventory_position = global_position
+@onready var inventory_sprite_size = $InventoryBackGround.region_rect.size * $InventoryBackGround.scale
 
 @export var items_container_path := NodePath()
 

@@ -32,7 +32,14 @@ func update(delta: float) -> void:
 
 func handle_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and _selected_item:
-		if not _selected_item.is_colliding_with_items(): 
+		var collision = _selected_item.is_colliding_with_items()
+		var is_colliding = collision[0]
+		if not is_colliding: 
 			owner.item_placeholder_state_machine.transition_to('Hidden')
 			state_machine.transition_to("Idle")
-		
+		else:
+			var items = collision[1]
+			for item in items:
+				item.become_replaced(event.position, owner.inventory_position, owner.inventory_sprite_size)
+				owner.item_placeholder_state_machine.transition_to('Hidden')
+				state_machine.transition_to("Idle")

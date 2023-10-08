@@ -60,7 +60,17 @@ func get_size():
 func is_colliding_with_items():
 	var areas = get_overlapping_areas()
 	var is_colliding = false
+	var items = []
 	for area in areas:
 		if area.is_in_group('item'):
 			is_colliding = true
-	return is_colliding
+			items.append(area)
+	return [is_colliding, items]
+
+func become_replaced(event_pos, inventory_position, inventory_sprite_size):
+	var dir = 1 if event_pos.x > global_position.x else -1
+	var tween = get_tree().create_tween()
+	var inventory_top_left = (inventory_position - inventory_sprite_size / 2)
+	var item_width = $Sprite2D.texture.get_size().x
+	var target = inventory_top_left - Vector2(item_width, 0)  if dir == 1 else inventory_top_left + Vector2(inventory_sprite_size.x, 0)
+	tween.tween_property(self, "global_position", target, 0.3).set_trans(Tween.TRANS_SINE)
