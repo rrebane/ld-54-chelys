@@ -1,22 +1,64 @@
-[gd_scene load_steps=4 format=3 uid="uid://blfwt68jqu2yb"]
+[gd_scene load_steps=12 format=3 uid="uid://blfwt68jqu2yb"]
 
 [ext_resource type="Script" path="res://scenes/inventory.gd" id="1_1rivn"]
-[ext_resource type="Texture2D" uid="uid://dx6chali8vmrd" path="res://assets/graphics/new_grid (1).png" id="2_maate"]
+[ext_resource type="Texture2D" uid="uid://cvqmeg3dkha4t" path="res://assets/graphics/inventory_one_cell.png" id="2_gklk8"]
+[ext_resource type="Texture2D" uid="uid://dhxummqogw2jy" path="res://assets/graphics/inventory_one_cell_white.png" id="3_ssveb"]
+[ext_resource type="Script" path="res://scripts/FSM/StateMachine.gd" id="3_yrv61"]
+[ext_resource type="Script" path="res://scenes/ItemPlacementIndicator.gd" id="4_5j77l"]
+[ext_resource type="Script" path="res://scripts/inventory_states/idle.gd" id="4_kgefa"]
+[ext_resource type="Script" path="res://scripts/inventory_states/item_being_dragged.gd" id="5_nngo8"]
+[ext_resource type="Script" path="res://scripts/placeholder_states/PlaceholderStateMachine.gd" id="7_rwfj0"]
+[ext_resource type="Script" path="res://scripts/placeholder_states/Shown.gd" id="8_mx5gi"]
+[ext_resource type="Script" path="res://scripts/placeholder_states/Hidden.gd" id="9_fdnef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e5j4"]
-size = Vector2(580, 380)
+size = Vector2(400, 400)
 
 [node name="Inventory" type="Node2D"]
-position = Vector2(321, 289)
 script = ExtResource("1_1rivn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.243137, 0.243137, 0.243137, 0.87451)
-texture = ExtResource("2_maate")
-
 [node name="ItemContainer" type="Node2D" parent="."]
+
+[node name="InventoryBackGround" type="Sprite2D" parent="."]
+clip_children = 2
+texture_repeat = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_gklk8")
+region_enabled = true
+region_rect = Rect2(0, 0, 800, 800)
+
+[node name="ItemPlacementIndicator" type="Sprite2D" parent="InventoryBackGround"]
+texture_repeat = 2
+scale = Vector2(2, 2)
+texture = ExtResource("3_ssveb")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 200)
+script = ExtResource("4_5j77l")
+positive_color = Color(0, 0.690196, 0, 1)
+negative_color = Color(0.627451, 0.105882, 0.0784314, 1)
 
 [node name="Area2D" type="Area2D" parent="." groups=["inventory"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_6e5j4")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_yrv61")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_kgefa")
+
+[node name="ItemBeingDragged" type="Node" parent="StateMachine"]
+script = ExtResource("5_nngo8")
+
+[node name="ItemPlaceholderStateMachine" type="Node" parent="."]
+script = ExtResource("7_rwfj0")
+initial_state = NodePath("Hidden")
+
+[node name="Shown" type="Node" parent="ItemPlaceholderStateMachine"]
+script = ExtResource("8_mx5gi")
+
+[node name="Hidden" type="Node" parent="ItemPlaceholderStateMachine"]
+script = ExtResource("9_fdnef")

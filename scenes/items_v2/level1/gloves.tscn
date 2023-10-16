@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://busrqs1kmw2r0"]
+
+[ext_resource type="PackedScene" uid="uid://b6qjxlhem4pwe" path="res://scenes/items_v2/item_base_scene.tscn" id="1_nvtk0"]
+[ext_resource type="Texture2D" uid="uid://dri25ehgoynwu" path="res://assets/graphics/resized_items/gloves.png" id="2_c43rt"]
+
+[node name="gloves" instance=ExtResource("1_nvtk0")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_c43rt")
+centered = false
+
+[node name="@CollisionPolygon2D@95882" type="CollisionPolygon2D" parent="." index="1"]
+polygon = PackedVector2Array(2, 2, 2, 98, 148, 98, 148, 2)
